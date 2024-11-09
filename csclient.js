@@ -8,6 +8,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function csplugindist() {
+    // Check if the CSS file is already in the document
+    if (!document.querySelector('link[href="https://jakajay113.github.io/csplugin/csclient.css"]')) {
+        // Create the <link> element for CSS
+        const cssLink = document.createElement("link");
+        cssLink.rel = "stylesheet";
+        cssLink.href = "https://jakajay113.github.io/csplugin/csclient.css";
+
+        // Find the div with class "chatbox-holder"
+        const chatboxHolder = document.querySelector(".chatbox-holder");
+        if (chatboxHolder) {
+            // Insert the CSS link before the chatbox-holder div
+            chatboxHolder.parentNode.insertBefore(cssLink, chatboxHolder);
+        } else {
+            alert('Div with class "chatbox-holder" not found.');
+        }
+    } else {
+        console.log("CSS link already exists, not appending again.");
+    }
+
     // Check if the script is already in the document
     if (!document.querySelector('script[src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"]')) {
         // Create the <script> element
