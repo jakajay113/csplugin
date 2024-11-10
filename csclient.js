@@ -276,16 +276,16 @@ function csplugindist() {
                             },
                             success: function (response) {
                                 const userData = JSON.parse(JSON.stringify(response));
-                                sessionStorage.setItem("SS1000UID", IDNo);
-                                sessionStorage.setItem("SS1000UT", UserType);
-                                sessionStorage.setItem("SS1000FN", FirstName);
-                                sessionStorage.setItem("SS1000LN", LastName);
-                                sessionStorage.setItem("SS1000G", SetupGender);
-
-                                 sessionStorage.setItem("SSUCSWA", "1");
-                                // console.log(userData);
-
-                                RoomCreation();
+                                 sessionStorage.setItem('SS1000UID', userData.data[0].IDNo);
+                                 sessionStorage.setItem('SS1000UT', userData.data[0].UserType);
+                                 sessionStorage.setItem('SS1000FN', userData.data[0].FirstName);
+                                 sessionStorage.setItem('SS1000LN', userData.data[0].LastName);
+                                 sessionStorage.setItem('SS1000G', userData.data[0].SetupGender);
+                                 
+                                 sessionStorage.setItem('SSUCSWA', '1');
+                                 //console.log(userData);
+            
+                                 RoomCreation();
                             },
                             error: function (xhr, status, errorThrown) {
                                 // HANDLES ERROR REPONSE
