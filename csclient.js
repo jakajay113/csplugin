@@ -282,7 +282,7 @@ function csplugindist() {
                                 sessionStorage.setItem("SS1000LN", LastName);
                                 sessionStorage.setItem("SS1000G", SetupGender);
 
-                                // sessionStorage.setItem("SSUCSWA", "1");
+                                 sessionStorage.setItem("SSUCSWA", "1");
                                 // console.log(userData);
 
                                 RoomCreation();
