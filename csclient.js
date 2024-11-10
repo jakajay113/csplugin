@@ -16,7 +16,7 @@ function csplugindist() {
         cssLink.href = "https://jakajay113.github.io/csplugin/csclient.css";
 
         // Find the div with class "chatbox-holder"
-        const chatboxHolder = document.querySelector(".chatbox-holder");
+        const chatboxHolder = document.querySelector(".csplguin-section");
         if (chatboxHolder) {
             // Insert the CSS link before the chatbox-holder div
             chatboxHolder.parentNode.insertBefore(cssLink, chatboxHolder);
