@@ -276,12 +276,17 @@ function csplugindist() {
                             },
                             success: function (response) {
                                 const userData = JSON.parse(JSON.stringify(response));
-                                 console.log(userData);
-                                // sessionStorage.setItem("SS1000UID", userData.data[0].IDNo);
-                                // sessionStorage.setItem("SS1000UT", userData.data[0].UserType);
-                                // sessionStorage.setItem("SS1000FN", userData.data[0].FirstName);
-                                // sessionStorage.setItem("SS1000LN", userData.data[0].LastName);
-                                // sessionStorage.setItem("SS1000G", userData.data[0].SetupGender);
+                                const IDNo = userData.data[0].IDNo;
+                                const UserType = userData.data[0].UserType;
+                                const FirstName = userData.data[0].FirstName;
+                                const LastName = userData.data[0].LastName;
+                                const SetupGender= userData.data[0].SetupGender;
+                            
+                                sessionStorage.setItem("SS1000UID", IDNo);
+                                sessionStorage.setItem("SS1000UT", UserType);
+                                sessionStorage.setItem("SS1000FN", FirstName);
+                                sessionStorage.setItem("SS1000LN", LastName);
+                                sessionStorage.setItem("SS1000G", SetupGender);
 
                                 sessionStorage.setItem("SSUCSWA", "1");
                                 // console.log(userData);
