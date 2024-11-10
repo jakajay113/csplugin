@@ -9,6 +9,7 @@
       "apiControllerMethod": "/spidc_web_api_test/api/v1/spidcproxy/",
       "xyzkey": "https://client1website.com/api/v1/",
       "status": "trial",
+      "startday": "2024-11-11",
       "expiredday": 7
     },
     {
@@ -20,6 +21,7 @@
       "apiControllerMethod": "/spidc_web_api_test/api/v1/spidcproxy/",
       "xyzkey": "https://client1website.com/api/v1/",
       "status": "trial",
+      "startday": "2024-11-11",
       "expiredday": 7
     },
     {
@@ -31,6 +33,7 @@
       "apiControllerMethod": "/spidc_web_api_test/api/v1/spidcproxy/",
       "xyzkey": "https://client1website.com/api/v1/",
       "status": "trial",
+      "startday": "2024-11-11",
       "expiredday": 7
     }
   ]
