@@ -6,16 +6,7 @@
       "licenseKey": "ABC123-XYZ456-789DEF",
       "contactEmail": "contact@client1website.com",
       "apiEndpoint": "https://client1website.com/api/v1/",
-      "timeout": 5000,
-      "features": {
-        "feature1": true,
-        "feature2": false,
-        "feature3": true
-      },
-      "settings": {
-        "theme": "light",
-        "language": "en-US"
-      }
+      "timeout": 5000
     },
     {
       "name": "ClientName2",
@@ -23,16 +14,7 @@
       "licenseKey": "DEF456-UVW789-123GHI",
       "contactEmail": "contact@client2website.com",
       "apiEndpoint": "https://client2website.com/api/v1/",
-      "timeout": 7000,
-      "features": {
-        "feature1": false,
-        "feature2": true,
-        "feature3": false
-      },
-      "settings": {
-        "theme": "dark",
-        "language": "fr-FR"
-      }
+      "timeout": 7000
     },
     {
       "name": "ClientName3",
@@ -40,16 +22,7 @@
       "licenseKey": "GHI789-STU012-345JKL",
       "contactEmail": "contact@client3website.com",
       "apiEndpoint": "https://client3website.com/api/v1/",
-      "timeout": 6000,
-      "features": {
-        "feature1": true,
-        "feature2": true,
-        "feature3": true
-      },
-      "settings": {
-        "theme": "light",
-        "language": "es-ES"
-      }
+      "timeout": 6000
     }
   ]
 }
