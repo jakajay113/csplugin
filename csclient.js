@@ -21,7 +21,7 @@ function csplugindist() {
             // Insert the CSS link before the chatbox-holder div
             chatboxHolder.parentNode.insertBefore(cssLink, chatboxHolder);
         } else {
-            alert('Div with class "chatbox-holder" not found.');
+            alert('Div with class "csplguin-section" not found.');
         }
     } else {
         console.log("CSS link already exists, not appending again.");
