@@ -4,8 +4,9 @@
       "name": "ClientName1",
       "url": "https://eservices.bagocity.gov.ph",
       "licenseKey": "ABC123-XYZ456-789DEF",
-      "contactEmail": "contact@client1website.com",
-      "apiEndpoint": "https://client1website.com/api/v1/",
+      "apiEndpoint": "/spidc_web_api_test/api/v1/spidcproxy/",
+      "apiControllerAUTH": "/spidc_web_api_test/api/v1/spidcproxy/",
+      "apiControllerMethod": "/spidc_web_api_test/api/v1/spidcproxy/",
       "xyzkey": "https://client1website.com/api/v1/",
       "status": "trial",
       "expiredday": 7
@@ -14,8 +15,9 @@
       "name": "ClientName2",
       "url": "https://client2website.com",
       "licenseKey": "DEF456-UVW789-123GHI",
-      "contactEmail": "contact@client2website.com",
       "apiEndpoint": "https://client2website.com/api/v1/",
+      "apiControllerAUTH": "/spidc_web_api_test/api/v1/spidcproxy/",
+      "apiControllerMethod": "/spidc_web_api_test/api/v1/spidcproxy/",
       "xyzkey": "https://client1website.com/api/v1/",
       "status": "trial",
       "expiredday": 7
@@ -24,8 +26,9 @@
       "name": "ClientName3",
       "url": "https://client3website.com",
       "licenseKey": "GHI789-STU012-345JKL",
-      "contactEmail": "contact@client3website.com",
       "apiEndpoint": "https://client3website.com/api/v1/",
+      "apiControllerAUTH": "/spidc_web_api_test/api/v1/spidcproxy/",
+      "apiControllerMethod": "/spidc_web_api_test/api/v1/spidcproxy/",
       "xyzkey": "https://client1website.com/api/v1/",
       "status": "trial",
       "expiredday": 7
