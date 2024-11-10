@@ -276,22 +276,23 @@ function csplugindist() {
                             },
                             success: function (response) {
                                 const userData = JSON.parse(JSON.stringify(response));
-                                const IDNo = userData.data[0].IDNo;
-                                const UserType = userData.data[0].UserType;
-                                const FirstName = userData.data[0].FirstName;
-                                const LastName = userData.data[0].LastName;
-                                const SetupGender= userData.data[0].SetupGender;
+                                  console.log(userData);
+                                // const IDNo = userData.data[0].IDNo;
+                                // const UserType = userData.data[0].UserType;
+                                // const FirstName = userData.data[0].FirstName;
+                                // const LastName = userData.data[0].LastName;
+                                // const SetupGender= userData.data[0].SetupGender;
                             
-                                sessionStorage.setItem("SS1000UID", IDNo);
-                                sessionStorage.setItem("SS1000UT", UserType);
-                                sessionStorage.setItem("SS1000FN", FirstName);
-                                sessionStorage.setItem("SS1000LN", LastName);
-                                sessionStorage.setItem("SS1000G", SetupGender);
+                                // sessionStorage.setItem("SS1000UID", IDNo);
+                                // sessionStorage.setItem("SS1000UT", UserType);
+                                // sessionStorage.setItem("SS1000FN", FirstName);
+                                // sessionStorage.setItem("SS1000LN", LastName);
+                                // sessionStorage.setItem("SS1000G", SetupGender);
 
-                                sessionStorage.setItem("SSUCSWA", "1");
+                                // sessionStorage.setItem("SSUCSWA", "1");
                                 // console.log(userData);
 
-                                RoomCreation();
+                                //RoomCreation();
                             },
                             error: function (xhr, status, errorThrown) {
                                 // HANDLES ERROR REPONSE
