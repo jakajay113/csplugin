@@ -31,50 +31,50 @@ function csplugindist() {
 
 
 
-        setTimeout(() => {
-            const pluginSection = document.querySelector('.csplguin-section');
-            // Check if the plugin section exists and if the chatbox has not been rendered yet
-            if (pluginSection && !pluginSection.querySelector('.chatbox-holder')) {
-              pluginSection.innerHTML = `
-                <div class="chatbox-holder">
-                  <div class="chatbox">
-                    <div class="chatbox-top">
-                      <div class="chatbox-avatar">
-                        <a href="#">
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3XYBqSnLSEwbzKQz4oOYYXvQAp6qzDKMoVg&s" />
-                        </a>
-                      </div>
-                      <div class="chat-partner-name">
-                        <span class="status online"></span>
-                        <a href="#">Chat Support - Online Payment</a>
-                      </div>
-                      <div class="chatbox-icons">
-                        <a href="javascript:void(0);"><i class="fa fa-minus"></i></a>
-                      </div>
-                    </div>
+        // setTimeout(() => {
+        //     const pluginSection = document.querySelector('.csplguin-section');
+        //     // Check if the plugin section exists and if the chatbox has not been rendered yet
+        //     if (pluginSection && !pluginSection.querySelector('.chatbox-holder')) {
+        //       pluginSection.innerHTML = `
+        //         <div class="chatbox-holder">
+        //           <div class="chatbox">
+        //             <div class="chatbox-top">
+        //               <div class="chatbox-avatar">
+        //                 <a href="#">
+        //                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3XYBqSnLSEwbzKQz4oOYYXvQAp6qzDKMoVg&s" />
+        //                 </a>
+        //               </div>
+        //               <div class="chat-partner-name">
+        //                 <span class="status online"></span>
+        //                 <a href="#">Chat Support - Online Payment</a>
+        //               </div>
+        //               <div class="chatbox-icons">
+        //                 <a href="javascript:void(0);"><i class="fa fa-minus"></i></a>
+        //               </div>
+        //             </div>
         
-                    <div class="chat-messages">
-                      <div class="message-box-holder"><div class="bot-box">Hi, how can I help you?</div></div>
-                      <div class="message-box-holder bot-question"><div class="bot-box">How can I apply for a new business online?</div></div>
-                      <div class="message-box-holder bot-question"><div class="bot-box">How can I renew my business online?</div></div>
-                      <div class="message-box-holder bot-question"><div class="bot-box">How can I pay my real property tax due?</div></div>
-                      <div class="message-box-holder bot-question"><div class="bot-box">Chat with Agent?</div></div>
-                    </div>
+        //             <div class="chat-messages">
+        //               <div class="message-box-holder"><div class="bot-box">Hi, how can I help you?</div></div>
+        //               <div class="message-box-holder bot-question"><div class="bot-box">How can I apply for a new business online?</div></div>
+        //               <div class="message-box-holder bot-question"><div class="bot-box">How can I renew my business online?</div></div>
+        //               <div class="message-box-holder bot-question"><div class="bot-box">How can I pay my real property tax due?</div></div>
+        //               <div class="message-box-holder bot-question"><div class="bot-box">Chat with Agent?</div></div>
+        //             </div>
         
-                    <div class="chat-input-holder">
-                      <button type="button" title="File Attachment" class="message-send fa fa-paperclip" onclick="document.getElementById('file-input').click()"></button>
-                      <textarea id="chatmessage" class="chat-input" style="font-size: 20px;"></textarea>
-                      <button type="button" value="Send" class="message-send" id="btnmessagesend">Send</button>
-                    </div>
-                    <div class="attachment-panel">
-                      <input type="file" id="file-input" style="display: none;" />
-                    </div>
-                  </div>
-                </div>
-              `;
-              console.log("Chatbox rendered.");
-            }
-          }, 200); 
+        //             <div class="chat-input-holder">
+        //               <button type="button" title="File Attachment" class="message-send fa fa-paperclip" onclick="document.getElementById('file-input').click()"></button>
+        //               <textarea id="chatmessage" class="chat-input" style="font-size: 20px;"></textarea>
+        //               <button type="button" value="Send" class="message-send" id="btnmessagesend">Send</button>
+        //             </div>
+        //             <div class="attachment-panel">
+        //               <input type="file" id="file-input" style="display: none;" />
+        //             </div>
+        //           </div>
+        //         </div>
+        //       `;
+        //       console.log("Chatbox rendered.");
+        //     }
+        //   }, 200); 
 
    
 
