@@ -738,10 +738,11 @@ function csplugindist() {
                                 // Retrieve the last stored message ID from sessionStorage or initialize it to null
                                 let lastMessageIdbackend = sessionStorage.getItem("lastMessageIdbackend");
                                 let newMessageDetected = false; // Flag to ensure detection happens once per interval
-                                var  mostRecentMessageId;
+                             
                                 
                                 filteredChatData.forEach((chat) => {
 
+                                    
                                     // Only process if new detection hasn't already occurred
                                         if (!newMessageDetected) {
                                             if (filteredChatData.length > 0) {
@@ -797,7 +798,7 @@ function csplugindist() {
                                                     
                                                     // Log the modified chatMessages to confirm the update
                                                     // console.log(targetId);
-                                                    // console.log(chatMessages);
+                                                     console.log(chatMessages);
                                                     sessionStorage.setItem("chatMessages", chatMessages);
 
                                                     //End
@@ -814,6 +815,8 @@ function csplugindist() {
                                                 }
                                             }
                                         }
+
+
                                     
                                     
                                     //console.log(chat.message_id+" "+chat.message);
