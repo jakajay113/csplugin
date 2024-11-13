@@ -741,6 +741,8 @@ function csplugindist() {
                                     if (!messageIdsBackend.includes(chat.message_id)) {
                                         messageIdsBackend.push(chat.message_id);
                                         console.log("new message is added!");
+                                    }else{
+                                        console.log("Message with ID", chat.message_id, "is already present.");
                                     }
 
 
