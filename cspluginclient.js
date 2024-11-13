@@ -734,27 +734,32 @@ function csplugindist() {
                                 });
                                 
                              
-                                 // Retrieve the last stored message ID from sessionStorage
+                                // Retrieve the last stored message ID from sessionStorage or initialize it to null
                                 let lastMessageIdbackend = sessionStorage.getItem("lastMessageIdbackend");
+                                let newMessageDetected = false; // Flag to ensure detection happens once per interval
+
+                                
                                 filteredChatData.forEach((chat) => {
 
-                                    // Check if filteredChatData has messages
-                                        if (filteredChatData.length > 0) {
-                                            // Get the most recent message ID (assuming the last element is the most recent)
-                                            let mostRecentMessageId = filteredChatData[filteredChatData.length - 1].message_id;
-                                    
-                                            // Check if the most recent message ID is different from the last stored ID
-                                            if (mostRecentMessageId !== lastMessageIdbackend) {
-                                                // Update sessionStorage with the new message ID
-                                                sessionStorage.setItem("lastMessageIdbackend", mostRecentMessageId);
-                                                // Log or handle the detection of the new message
-                                                console.log("New message detected with ID:", mostRecentMessageId);
-                                            } else {
-                                                // Log if the last message ID matches (no new messages)
-                                                console.log("No new messages detected.");
+                                    // Only process if new detection hasn't already occurred
+                                        if (!newMessageDetected) {
+                                            if (filteredChatData.length > 0) {
+                                                // Get the most recent message ID (assuming the last element is the most recent)
+                                                let mostRecentMessageId = filteredChatData[filteredChatData.length - 1].message_id;
+                                
+                                                // Check if the most recent message ID is different from the last stored ID
+                                                if (mostRecentMessageId !== lastMessageIdbackend) {
+                                                    // Update sessionStorage with the new message ID
+                                                    sessionStorage.setItem("lastMessageIdbackend", mostRecentMessageId);
+                                                    // Log or handle the detection of the new message
+                                                    console.log("New message detected with ID:", mostRecentMessageId);
+                                                    newMessageDetected = true; // Set flag to true to prevent further checks
+                                                } else {
+                                                    // Log if the last message ID matches (no new messages)
+                                                    console.log("No new messages detected.");
+                                                }
                                             }
                                         }
-
                                     
                                     
                                     //console.log(chat.message_id+" "+chat.message);
