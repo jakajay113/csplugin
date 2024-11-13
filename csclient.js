@@ -275,17 +275,38 @@ function csplugindist() {
                                 // csloader();
                             },
                             success: function (response) {
-                                const userData = JSON.parse(JSON.stringify(response));
-                                 sessionStorage.setItem('SS1000UID', userData.data[0].IDNo);
-                                 sessionStorage.setItem('SS1000UT', userData.data[0].UserType);
-                                 sessionStorage.setItem('SS1000FN', userData.data[0].FirstName);
-                                 sessionStorage.setItem('SS1000LN', userData.data[0].LastName);
-                                 sessionStorage.setItem('SS1000G', userData.data[0].SetupGender);
+                                // const userData = JSON.parse(JSON.stringify(response));
+                                //  sessionStorage.setItem('SS1000UID', userData.data[0].IDNo);
+                                //  sessionStorage.setItem('SS1000UT', userData.data[0].UserType);
+                                //  sessionStorage.setItem('SS1000FN', userData.data[0].FirstName);
+                                //  sessionStorage.setItem('SS1000LN', userData.data[0].LastName);
+                                //  sessionStorage.setItem('SS1000G', userData.data[0].SetupGender);
                                  
-                                 sessionStorage.setItem('SSUCSWA', '1');
-                                 //console.log(userData);
+                                //  sessionStorage.setItem('SSUCSWA', '1');
+                                //  //console.log(userData);
             
-                                 RoomCreation();
+                                //  RoomCreation();
+                                 try {
+                                    // Parse response safely
+                                    const userData = response && response.data && response.data[0] ? response.data[0] : null;
+                                    
+                                    if (userData) {
+                                        // Check and store each expected property if available
+                                        sessionStorage.setItem('SS1000UID', userData.IDNo || "");
+                                        sessionStorage.setItem('SS1000UT', userData.UserType || "");
+                                        sessionStorage.setItem('SS1000FN', userData.FirstName || "");
+                                        sessionStorage.setItem('SS1000LN', userData.LastName || "");
+                                        sessionStorage.setItem('SS1000G', userData.SetupGender || "");
+                                        sessionStorage.setItem('SSUCSWA', '1');
+                        
+                                        // Call RoomCreation if userData exists and is complete
+                                        RoomCreation();
+                                    } else {
+                                        console.error("Unexpected response format or missing data properties.");
+                                    }
+                                } catch (error) {
+                                    console.error("Error processing response data:", error);
+                                }
                             },
                             error: function (xhr, status, errorThrown) {
                                 // HANDLES ERROR REPONSE
