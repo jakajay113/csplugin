@@ -733,16 +733,18 @@ function csplugindist() {
                                     return chat.sender_id == sessionStorage.getItem("SS1000UID");
                                 });
                                 
-                                // Retrieve messageIds from sessionStorage if it exists, or initialize an empty array
-                                let messageIdsBackend = JSON.parse(sessionStorage.getItem("messageIdsmessageIdsBackend")) || [];
+                              // Retrieve the last stored message ID from sessionStorage
+                                let lastMessageIdbackend = sessionStorage.getItem("lastMessageId");
                                 
                                 filteredChatData.forEach((chat) => {
 
-                                    if (!messageIdsBackend.includes(chat.message_id)) {
-                                        messageIdsBackend.push(chat.message_id);
-                                        console.log("new message is added!");
-                                    }else{
-                                        console.log("Message with ID", chat.message_id, "is already present.");
+                                  // Check if the current chat.message_id is different from the last stored one
+                                    if (lastMessageIdbackend !== chat.message_id) {
+                                        // If the message is new (i.e., it's not the same as the last stored one)
+                                        sessionStorage.setItem("lastMessageIdbackend", chat.message_id); // Update the last message ID in sessionStorage
+                                        console.log("New message is created with ID:", chat.message_id);
+                                    } else {
+                                        console.log("No new message created. Current message ID is the same as the last one.");
                                     }
 
 
