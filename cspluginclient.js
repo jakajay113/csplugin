@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.onreadystatechange = function () {
         if (document.readyState !== "complete") {
         } else {
+            let xurl = window.location.hostname;
+            aler(xurl);
             csplugindist();
         }
     };
