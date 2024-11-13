@@ -811,7 +811,13 @@ function csplugindist() {
 
                                         // Log the modified chatMessages to confirm the update
                                         //  console.log(targetId);
-                                        console.log(chatMessages);
+                                        //console.log(chatMessages);
+
+                                         // Store this message ID in the processedMessageIds array
+                                            processedMessageIdsBackend.push(chat.message_id);
+
+                                            // Save the updated processedMessageIds to sessionStorage
+                                            sessionStorage.setItem("processedMessageIdsBackend", JSON.stringify(processedMessageIdsBackend));
                                         
                                         sessionStorage.setItem("chatMessages", chatMessages);
                                     }
