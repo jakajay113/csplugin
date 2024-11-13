@@ -753,7 +753,7 @@ function csplugindist() {
                                                     // Update sessionStorage with the new message ID
                                                     sessionStorage.setItem("lastMessageIdbackend", mostRecentMessageId);
                                                     // Log or handle the detection of the new message
-                                                    console.log("New message detected with ID:", mostRecentMessageId);
+                                                    //console.log("New message detected with ID:", mostRecentMessageId);
                                                     newMessageDetected = true; // Set flag to true to prevent further checks
                                                     
                                                 } else {
