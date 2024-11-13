@@ -754,39 +754,58 @@ function csplugindist() {
                                                     sessionStorage.setItem("lastMessageIdbackend", mostRecentMessageId);
                                                     // Log or handle the detection of the new message
                                                     console.log("New message detected with ID:", mostRecentMessageId);
-                                                    //  // Select the element with the attribute data-id="MID1311202410384160022"
-                                                    // const targetElement = document.querySelector('.csthaction[data-id="'+mostRecentMessageId+'"]');
-                                                    // if (targetElement) {
-                                                    //     // Get the parent container (message-box-holder)
-                                                    //     const container = targetElement.closest('.message-box-holder');
-                                                    //     if (container) {
-                                                    //         // Find and hide the <p> element inside the container
-                                                    //         const pElement = container.querySelector('p');
-                                                    //         if (pElement) {
-                                                    //             pElement.style.display = 'none';
-                                                    //             console.log("New message detected with ID:", mostRecentMessageId);
-                                                    //         }
-                                                    //         // Hide the <span> element with class "cstimeposition" inside the container
-                                                    //         const spanElement = container.querySelector('.cstimeposition');
-                                                    //         if (spanElement) {
-                                                    //             spanElement.style.display = 'none';
-                                                    //             console.log("New message detected with ID:", mostRecentMessageId);
-                                                    //         }
-                                                    //         // Find the .bot-box element and add the typing indicator inside it
-                                                    //         const botBox = container.querySelector('.bot-box');
-                                                    //         if (botBox) {
-                                                    //             const typingIndicator = document.createElement('div');
-                                                    //             typingIndicator.classList.add('typing');
-                                                    //             typingIndicator.innerHTML = `
-                                                    //               <div class="dot"></div>
-                                                    //               <div class="dot"></div>
-                                                    //               <div class="dot"></div>
-                                                    //             `;
-                                                    //             botBox.appendChild(typingIndicator);
-                                                    //             console.log("New message detected with ID:", mostRecentMessageId);
-                                                    //         }
-                                                    //     }
-                                                    // }
+
+                                                    //Type Animation
+                                                    let chatMessages = sessionStorage.getItem("chatMessages");
+                                                    const targetId = chat.message_id; // Change this to the desired data-id
+                                                    
+                                                    // Pattern 1: For the span with both 'newtooltip-text csthaction' classes and inner content for "just now"
+                                                    const pattern1 = new RegExp(`<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\\/span>\\s*<span class="">.*?<\\/span>`, "s");
+                                                    
+                                                    // Pattern 2: For the simpler span structure with class 'cstimeposition' containing "just now"
+                                                    const pattern2 = new RegExp(`<span class="csthaction" data-id="${targetId}"><\\/span>\\s*<span class="cstimeposition">.*?<\\/span>`, "s");
+                                                    
+                                                    // Replace "just now" text in both patterns with "Updated Time"
+                                                    chatMessages = chatMessages.replace(pattern1, (match) => {
+                                                        // This will replace the 'just now' text in the second span with 'Updated Time'
+                                                        return match.replace(/<span class="">.*?<\/span>/, '<span class="">' + timeAgo(chat.sent_at) + "</span>");
+                                                    });
+                                                    
+                                                    chatMessages = chatMessages.replace(pattern2, (match) => {
+                                                        // This will replace 'just now' with 'Updated Time' in the second span
+                                                        return match.replace(/<span class="cstimeposition">.*?<\/span>/, '<span class="cstimeposition">' + timeAgo(chat.sent_at) + "</span>");
+                                                    });
+                                                    
+                                                    // Add code to hide <p> and add typing indicator inside .bot-box
+                                                    const containerPattern = new RegExp(`<div class="message-box-holder newtooltip">.*?<div class="bot-box">(.*?)<\\/div>`, "s");
+                                                    chatMessages = chatMessages.replace(containerPattern, (match, innerContent) => {
+                                                        // Replace <p> with display: none
+                                                        const updatedContent = innerContent.replace(/<p .*?>(.*?)<\/p>/, '<p style="display: none;">$1</p>');
+                                                        // Add the typing indicator inside .bot-box
+                                                        const typingIndicator = `
+                                                            <div class="bot-box">
+                                                                ${updatedContent}
+                                                                <div class="typing">
+                                                                    <div class="dot"></div>
+                                                                    <div class="dot"></div>
+                                                                    <div class="dot"></div>
+                                                                </div>
+                                                            </div>
+                                                        `;
+                                                        return match.replace(innerContent, typingIndicator);
+                                                    });
+                                                    
+                                                    // Log the modified chatMessages to confirm the update
+                                                    // console.log(targetId);
+                                                    // console.log(chatMessages);
+                                                    sessionStorage.setItem("chatMessages", chatMessages);
+
+                                                    //End
+
+
+
+                                                    
+                                                 
                                                     newMessageDetected = true; // Set flag to true to prevent further checks
                                                     
                                                 } else {
