@@ -724,9 +724,7 @@ function csplugindist() {
                                 xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
                             },
                             success: function (response) {
-                                    console.log(response.data);
-
-                                
+                                if(response.data){
                                 const chatData = response.data.ChatSpecificInformation;
                                 const filteredChatData = response.data.ChatSpecificInformation.filter(function (chat) {
                                     return chat.sender_id !== sessionStorage.getItem("SS1000UID");
@@ -941,6 +939,7 @@ function csplugindist() {
                                 });
 
                                 loadMessages();
+                              }
                             },
                             error: function (xhr, status, errorThrown) {
                                 console.log("Error fetching chat convo:", xhr.responseText);
