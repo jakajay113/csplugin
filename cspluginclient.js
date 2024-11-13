@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function csplugindist() {
 //Check if the CSS file is already in the document
-    if (!document.querySelector('link[href="https://jakajay113.github.io/csplugin/csclient.css"]')) {
+    if (!document.querySelector('link[href="https://jakajay113.github.io/csplugin/cspluginclient.css"]')) {
         // Create the <link> element for CSS
         const cssLink = document.createElement("link");
         cssLink.rel = "stylesheet";
-        cssLink.href = "https://jakajay113.github.io/csplugin/csclient.css";
+        cssLink.href = "https://jakajay113.github.io/csplugin/cspluginclient.css";
     
         // Find the div with class "csplguin-section"
         const pluginSection = document.querySelector(".csplguin-section");
