@@ -904,6 +904,7 @@ function csplugindist() {
                                 });
 
                                 loadMessages();
+                                console.log(chatMessages);
                             },
                             error: function (xhr, status, errorThrown) {
                                 console.log("Error fetching chat convo:", xhr.responseText);
