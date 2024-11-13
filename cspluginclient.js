@@ -714,7 +714,8 @@ function csplugindist() {
 
 
                     
-
+                     // Retrieve the last stored message ID from sessionStorage
+                   let lastMessageIdbackend = sessionStorage.getItem("lastMessageIdbackend");
                     function csconvoClientMessageUnsendUpdating() {
                         $.ajax({
                             url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
@@ -733,21 +734,28 @@ function csplugindist() {
                                     return chat.sender_id == sessionStorage.getItem("SS1000UID");
                                 });
                                 
-                              // Retrieve the last stored message ID from sessionStorage
-                                let lastMessageIdbackend = sessionStorage.getItem("lastMessageId");
+                             
                                 
                                 filteredChatData.forEach((chat) => {
 
-                                  // Check if the current chat.message_id is different from the last stored one
-                                    if (lastMessageIdbackend !== chat.message_id) {
-                                        // If the message is new (i.e., it's not the same as the last stored one)
-                                        sessionStorage.setItem("lastMessageIdbackend", chat.message_id); // Update the last message ID in sessionStorage
-                                        console.log("New message is created with ID:", chat.message_id);
-                                    } else {
-                                        console.log("No new message created. Current message ID is the same as the last one.");
-                                    }
+                                    // Check if filteredChatData has messages
+                                        if (filteredChatData.length > 0) {
+                                            // Get the most recent message ID (assuming the last element is the most recent)
+                                            let mostRecentMessageId = filteredChatData[filteredChatData.length - 1].message_id;
+                                    
+                                            // Check if the most recent message ID is different from the last stored ID
+                                            if (mostRecentMessageId !== lastMessageIdbackend) {
+                                                // Update sessionStorage with the new message ID
+                                                sessionStorage.setItem("lastMessageIdbackend", mostRecentMessageId);
+                                                // Log or handle the detection of the new message
+                                                console.log("New message detected with ID:", mostRecentMessageId);
+                                            } else {
+                                                // Log if the last message ID matches (no new messages)
+                                                console.log("No new messages detected.");
+                                            }
+                                        }
 
-
+                                    
                                     
                                     //console.log(chat.message_id+" "+chat.message);
                                     if (chat.message == "Message Unsend" && chat.file_path == "") {
