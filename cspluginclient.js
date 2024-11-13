@@ -757,7 +757,7 @@ function csplugindist() {
 
                                                     //Type Animation
                                                     let chatMessages = sessionStorage.getItem("chatMessages");
-                                                    const targetId = chat.message_id; // Change this to the desired data-id
+                                                    const targetId = mostRecentMessageId; // Change this to the desired data-id
                                                     
                                                     // Pattern 1: For the span with both 'newtooltip-text csthaction' classes and inner content for "just now"
                                                     const pattern1 = new RegExp(`<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\\/span>\\s*<span class="">.*?<\\/span>`, "s");
