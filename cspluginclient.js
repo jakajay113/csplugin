@@ -838,7 +838,7 @@ function csplugindist() {
 
                                         // Log the modified chatMessages to confirm the update
                                         //  console.log(targetId);
-                                        //console.log(chatMessages);
+                                        console.log(chatMessages);
 
                                         
                                         
