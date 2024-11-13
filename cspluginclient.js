@@ -759,7 +759,7 @@ function csplugindist() {
                                                     newMessageDetected = true; // Set flag to true to prevent further checks
                                                 } else {
                                                     // Log if the last message ID matches (no new messages)
-                                                    console.log("No new messages detected.");
+                                                    //console.log("No new messages detected.");
                                                 }
                                             }
                                         }
