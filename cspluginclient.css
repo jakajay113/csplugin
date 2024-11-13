@@ -405,7 +405,7 @@ ul {
 }
 
 .chat-bubble {
-  background-color:#E6F8F1;
+  background-color:rgb(99 129 174 / 10%);
   padding:16px 28px;
   -webkit-border-radius: 20px;
   -webkit-border-bottom-left-radius: 2px;
