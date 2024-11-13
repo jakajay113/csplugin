@@ -732,8 +732,19 @@ function csplugindist() {
                                 const filteredChatDataClentMsg = response.data.ChatSpecificInformation.filter(function (chat) {
                                     return chat.sender_id == sessionStorage.getItem("SS1000UID");
                                 });
-
+                                
+                                // Retrieve messageIds from sessionStorage if it exists, or initialize an empty array
+                                let messageIdsBackend = JSON.parse(sessionStorage.getItem("messageIdsmessageIdsBackend")) || [];
+                                
                                 filteredChatData.forEach((chat) => {
+
+                                    if (!messageIdsBackend.includes(chat.message_id)) {
+                                        messageIdsBackend.push(chat.message_id);
+                                        console.log("new message is added!");
+                                    }
+
+
+                                    
                                     //console.log(chat.message_id+" "+chat.message);
                                     if (chat.message == "Message Unsend" && chat.file_path == "") {
                                         //console.log("True");
