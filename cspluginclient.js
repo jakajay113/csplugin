@@ -754,7 +754,9 @@ function csplugindist() {
                                                     sessionStorage.setItem("lastMessageIdbackend", mostRecentMessageId);
                                                     // Log or handle the detection of the new message
 
-                                                    // Select the element with the attribute data-id="MID1311202410384160022"
+                                                    console.log("New message detected with ID:", mostRecentMessageId);
+                                                    
+                                                     // Select the element with the attribute data-id="MID1311202410384160022"
                                                     const targetElement = document.querySelector('.csthaction[data-id="'+mostRecentMessageId+'"]');
                                                     if (targetElement) {
                                                         // Get the parent container (message-box-holder)
@@ -764,11 +766,13 @@ function csplugindist() {
                                                             const pElement = container.querySelector('p');
                                                             if (pElement) {
                                                                 pElement.style.display = 'none';
+                                                                console.log("New message detected with ID:", mostRecentMessageId);
                                                             }
                                                             // Hide the <span> element with class "cstimeposition" inside the container
                                                             const spanElement = container.querySelector('.cstimeposition');
                                                             if (spanElement) {
                                                                 spanElement.style.display = 'none';
+                                                                console.log("New message detected with ID:", mostRecentMessageId);
                                                             }
                                                             // Find the .bot-box element and add the typing indicator inside it
                                                             const botBox = container.querySelector('.bot-box');
@@ -781,15 +785,16 @@ function csplugindist() {
                                                                   <div class="dot"></div>
                                                                 `;
                                                                 botBox.appendChild(typingIndicator);
+                                                                console.log("New message detected with ID:", mostRecentMessageId);
                                                             }
                                                         }
                                                     }
 
 
+                                                    
+                                                    newMessageDetected = true; // Set flag to true to prevent further checks
 
                                                     
-                                                    console.log("New message detected with ID:", mostRecentMessageId);
-                                                    newMessageDetected = true; // Set flag to true to prevent further checks
                                                 } else {
                                                     // Log if the last message ID matches (no new messages)
                                                     //console.log("No new messages detected.");
