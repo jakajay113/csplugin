@@ -594,7 +594,7 @@ function csplugindist() {
                         }
                     }
 
-                    //loadrealtimeconvo();
+                    loadrealtimeconvo();
 
                     function loadrealtimeconvo() {
                         // Call csconvo immediately, then start polling every 2 seconds
