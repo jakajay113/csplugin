@@ -724,7 +724,7 @@ function csplugindist() {
                                 xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
                             },
                             success: function (response) {
-                                    console.log(response.data[0]);
+                                    console.log(response.data);
 
                                 
                                 const chatData = response.data.ChatSpecificInformation;
