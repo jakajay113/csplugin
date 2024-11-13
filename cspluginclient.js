@@ -738,7 +738,7 @@ function csplugindist() {
                                 // Retrieve the last stored message ID from sessionStorage or initialize it to null
                                 let lastMessageIdbackend = sessionStorage.getItem("lastMessageIdbackend");
                                 let newMessageDetected = false; // Flag to ensure detection happens once per interval
-
+                                var  mostRecentMessageId;
                                 
                                 filteredChatData.forEach((chat) => {
 
@@ -747,7 +747,7 @@ function csplugindist() {
                                             if (filteredChatData.length > 0) {
                                                 // Get the most recent message ID (assuming the last element is the most recent)
                                                 let mostRecentMessageId = filteredChatData[filteredChatData.length - 1].message_id;
-                                
+                                                 mostRecentMessageId = mostRecentMessageId;
                                                 // Check if the most recent message ID is different from the last stored ID
                                                 if (mostRecentMessageId !== lastMessageIdbackend) {
                                                     // Update sessionStorage with the new message ID
@@ -937,41 +937,41 @@ function csplugindist() {
                                 });
 
                                 loadMessages();
-
+                                                      console.log("New message detected with ID:", mostRecentMessageId);
                                     
-                                                     // Select the element with the attribute data-id="MID1311202410384160022"
-                                                    const targetElement = document.querySelector('.csthaction[data-id="'+mostRecentMessageId+'"]');
-                                                    if (targetElement) {
-                                                        // Get the parent container (message-box-holder)
-                                                        const container = targetElement.closest('.message-box-holder');
-                                                        if (container) {
-                                                            // Find and hide the <p> element inside the container
-                                                            const pElement = container.querySelector('p');
-                                                            if (pElement) {
-                                                                pElement.style.display = 'none';
-                                                                console.log("New message detected with ID:", mostRecentMessageId);
-                                                            }
-                                                            // Hide the <span> element with class "cstimeposition" inside the container
-                                                            const spanElement = container.querySelector('.cstimeposition');
-                                                            if (spanElement) {
-                                                                spanElement.style.display = 'none';
-                                                                console.log("New message detected with ID:", mostRecentMessageId);
-                                                            }
-                                                            // Find the .bot-box element and add the typing indicator inside it
-                                                            const botBox = container.querySelector('.bot-box');
-                                                            if (botBox) {
-                                                                const typingIndicator = document.createElement('div');
-                                                                typingIndicator.classList.add('typing');
-                                                                typingIndicator.innerHTML = `
-                                                                  <div class="dot"></div>
-                                                                  <div class="dot"></div>
-                                                                  <div class="dot"></div>
-                                                                `;
-                                                                botBox.appendChild(typingIndicator);
-                                                                console.log("New message detected with ID:", mostRecentMessageId);
-                                                            }
-                                                        }
-                                                    }
+                                                    //  // Select the element with the attribute data-id="MID1311202410384160022"
+                                                    // const targetElement = document.querySelector('.csthaction[data-id="'+mostRecentMessageId+'"]');
+                                                    // if (targetElement) {
+                                                    //     // Get the parent container (message-box-holder)
+                                                    //     const container = targetElement.closest('.message-box-holder');
+                                                    //     if (container) {
+                                                    //         // Find and hide the <p> element inside the container
+                                                    //         const pElement = container.querySelector('p');
+                                                    //         if (pElement) {
+                                                    //             pElement.style.display = 'none';
+                                                    //             console.log("New message detected with ID:", mostRecentMessageId);
+                                                    //         }
+                                                    //         // Hide the <span> element with class "cstimeposition" inside the container
+                                                    //         const spanElement = container.querySelector('.cstimeposition');
+                                                    //         if (spanElement) {
+                                                    //             spanElement.style.display = 'none';
+                                                    //             console.log("New message detected with ID:", mostRecentMessageId);
+                                                    //         }
+                                                    //         // Find the .bot-box element and add the typing indicator inside it
+                                                    //         const botBox = container.querySelector('.bot-box');
+                                                    //         if (botBox) {
+                                                    //             const typingIndicator = document.createElement('div');
+                                                    //             typingIndicator.classList.add('typing');
+                                                    //             typingIndicator.innerHTML = `
+                                                    //               <div class="dot"></div>
+                                                    //               <div class="dot"></div>
+                                                    //               <div class="dot"></div>
+                                                    //             `;
+                                                    //             botBox.appendChild(typingIndicator);
+                                                    //             console.log("New message detected with ID:", mostRecentMessageId);
+                                                    //         }
+                                                    //     }
+                                                    // }
 
 
                                                     
