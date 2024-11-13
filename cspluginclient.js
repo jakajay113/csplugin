@@ -806,7 +806,19 @@ function csplugindist() {
 
                                         // Log the modified chatMessages to confirm the update
                                         //  console.log(targetId);
+
+                                        // Parse the data if it's stored as JSON, or assume it's a string of HTML
+                                        let parser = new DOMParser();
+                                        let doc = parser.parseFromString(chatMessages, 'text/html');
+                                        // Check if an element with the data-id "MID1311202408060077404" exists
+                                        let messageExists = doc.querySelector('[data-id="'+targetId+'"]') !== null;
+                                        if (messageExists) {
+                                            console.log('Message with ID MID1311202408060077404 exists.');
+                                        } else {
+                                            console.log('Message with ID MID1311202408060077404 does not exist.');
+                                        }
                                         console.log(chatMessages);
+                                        
                                         sessionStorage.setItem("chatMessages", chatMessages);
                                     }
                                 });
