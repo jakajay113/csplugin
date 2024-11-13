@@ -713,9 +713,7 @@ function csplugindist() {
                     }
 
 
-                     // Retrieve processed message IDs from sessionStorage or initialize to an empty array
-                    let processedMessageIdsBackend = JSON.parse(sessionStorage.getItem("processedMessageIdsBackend")) || [];
-                    //let processedMessageIdsBackend = []; // Array to store processed message IDs
+                    
 
                     function csconvoClientMessageUnsendUpdating() {
                         $.ajax({
@@ -813,11 +811,7 @@ function csplugindist() {
                                         //  console.log(targetId);
                                         //console.log(chatMessages);
 
-                                         // Store this message ID in the processedMessageIds array
-                                            processedMessageIdsBackend.push(chat.message_id);
-
-                                            // Save the updated processedMessageIds to sessionStorage
-                                            sessionStorage.setItem("processedMessageIdsBackend", JSON.stringify(processedMessageIdsBackend));
+                                        
                                         
                                         sessionStorage.setItem("chatMessages", chatMessages);
                                     }
