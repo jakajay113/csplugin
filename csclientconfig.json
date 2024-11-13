@@ -2,12 +2,12 @@
   "clients": [
     {
       "name": "ClientName1",
-      "url": "https://eservices.bagocity.gov.ph",
+      "url": "https://online.spidc.com.ph",
       "licenseKey": "ABC123-XYZ456-789DEF",
       "apiEndpoint": "/spidc_web_api_test/api/v1/spidcproxy/",
       "apiControllerAUTH": "/spidc_web_api_test/api/v1/spidcproxy/",
       "apiControllerMethod": "/spidc_web_api_test/api/v1/spidcproxy/",
-      "xyzkey": "https://client1website.com/api/v1/",
+      "xyzkey": "SpidcAppKeyTest123456789",
       "status": "trial",
       "startday": "2024-11-11",
       "expiredday": 7
