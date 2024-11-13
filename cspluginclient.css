@@ -422,7 +422,7 @@ ul {
 }
 .typing .dot {
   animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
-  background-color: #6CAD96 ; //rgba(20,105,69,.7);
+  background-color: #6c6c6c; //rgba(20,105,69,.7);
   border-radius: 50%;
   height: 7px;
   margin-right: 4px;
