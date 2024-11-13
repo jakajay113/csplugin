@@ -714,8 +714,7 @@ function csplugindist() {
 
 
                     
-                     // Retrieve the last stored message ID from sessionStorage
-                   let lastMessageIdbackend = sessionStorage.getItem("lastMessageIdbackend");
+                    
                     function csconvoClientMessageUnsendUpdating() {
                         $.ajax({
                             url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
@@ -735,7 +734,8 @@ function csplugindist() {
                                 });
                                 
                              
-                                
+                                 // Retrieve the last stored message ID from sessionStorage
+                                let lastMessageIdbackend = sessionStorage.getItem("lastMessageIdbackend");
                                 filteredChatData.forEach((chat) => {
 
                                     // Check if filteredChatData has messages
