@@ -712,6 +712,11 @@ function csplugindist() {
                         });
                     }
 
+
+                     // Retrieve processed message IDs from sessionStorage or initialize to an empty array
+                    let processedMessageIdsBackend = JSON.parse(sessionStorage.getItem("processedMessageIdsBackend")) || [];
+                    //let processedMessageIdsBackend = []; // Array to store processed message IDs
+
                     function csconvoClientMessageUnsendUpdating() {
                         $.ajax({
                             url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
