@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (document.readyState !== "complete") {
         } else {
             let xurl = window.location.hostname;
-            alert(xurl);
+            //alert(xurl);
             csplugindist();
         }
     };
