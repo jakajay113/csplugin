@@ -275,38 +275,32 @@ function csplugindist() {
                                 // csloader();
                             },
                             success: function (response) {
-                                // const userData = JSON.parse(JSON.stringify(response));
-                                //  sessionStorage.setItem('SS1000UID', userData.data[0].IDNo);
-                                //  sessionStorage.setItem('SS1000UT', userData.data[0].UserType);
-                                //  sessionStorage.setItem('SS1000FN', userData.data[0].FirstName);
-                                //  sessionStorage.setItem('SS1000LN', userData.data[0].LastName);
-                                //  sessionStorage.setItem('SS1000G', userData.data[0].SetupGender);
-                                 
-                                //  sessionStorage.setItem('SSUCSWA', '1');
-                                //  //console.log(userData);
-            
-                                //  RoomCreation();
-                                 try {
-                                    // Parse response safely
-                                    const userData = response && response.data && response.data[0] ? response.data[0] : null;
-                                    
-                                    if (userData) {
-                                        // Check and store each expected property if available
-                                        sessionStorage.setItem('SS1000UID', userData.IDNo || "");
-                                        sessionStorage.setItem('SS1000UT', userData.UserType || "");
-                                        sessionStorage.setItem('SS1000FN', userData.FirstName || "");
-                                        sessionStorage.setItem('SS1000LN', userData.LastName || "");
-                                        sessionStorage.setItem('SS1000G', userData.SetupGender || "");
+                                    const userData = response; // No need for JSON.parse(JSON.stringify) if response is already an object
+                                    if (userData && userData.data && userData.data[0]) {
+                                        const user = userData.data[0];
+                                        
+                                        // Set sessionStorage items if data exists
+                                        sessionStorage.setItem('SS1000UID', user.IDNo);
+                                        sessionStorage.setItem('SS1000UT', user.UserType);
+                                        sessionStorage.setItem('SS1000FN', user.FirstName);
+                                        sessionStorage.setItem('SS1000LN', user.LastName);
+                                        sessionStorage.setItem('SS1000G', user.SetupGender);
+                                        // Set other session data
                                         sessionStorage.setItem('SSUCSWA', '1');
-                        
-                                        // Call RoomCreation if userData exists and is complete
+                                        // Proceed with RoomCreation
                                         RoomCreation();
                                     } else {
-                                        console.error("Unexpected response format or missing data properties.");
+                                        console.log("Unexpected response format or missing data properties.");
                                     }
-                                } catch (error) {
-                                    console.error("Error processing response data:", error);
-                                }
+                                    //const userData = JSON.parse(JSON.stringify(response));
+                                    // sessionStorage.setItem('SS1000UID', userData.data[0].IDNo);
+                                    // sessionStorage.setItem('SS1000UT', userData.data[0].UserType);
+                                    // sessionStorage.setItem('SS1000FN', userData.data[0].FirstName);
+                                    // sessionStorage.setItem('SS1000LN', userData.data[0].LastName);
+                                    // sessionStorage.setItem('SS1000G', userData.data[0].SetupGender);
+                                    // sessionStorage.setItem('SSUCSWA', '1');
+                                    // console.log(userData);
+                                    // RoomCreation();
                             },
                             error: function (xhr, status, errorThrown) {
                                 // HANDLES ERROR REPONSE
