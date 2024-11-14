@@ -13,6 +13,20 @@
         .cschat-border-icon {
             border: 1px solid #d3d6da; /* Custom border color */
             }
+            textarea.form-control {
+                border: none !important;
+                box-shadow: none !important; 
+                background-color: #e9ecef; /* Default Bootstrap background color */
+            }
+            textarea.form-control:focus {
+                border: none !important;        /* Remove border */
+                outline: none !important;       /* Remove the outline (focus ring) */
+                box-shadow: none !important;    /* Remove any box-shadow applied on focus */
+                background-color: #e9ecef !important; /* Set background color to red when focused */
+            }
+            .input-group-text {
+            border: none !important;
+        }
     </style>
   </head>
   <body>
