@@ -9,39 +9,83 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Hello, world!</title>
+    <style>
+        .cschat-border-icon {
+            border: 1px solid #d3d6da; /* Custom border color */
+            }
+    </style>
   </head>
   <body>
- 
-    <div class="d-flex justify-content-between align-items-center p-1 my-1 text-white bg-purple rounded shadow-sm">
-        <div class="d-flex align-items-center">
-          <img class="me-3 rounded-circle img-fluid" src="https://static.ada.support/images/57202178-087d-403a-a58b-3df91600226f.png" alt="" width="48" height="38">
-          <div class="lh-1">
-            <h1 class="h5 mb-0 text-dark lh-1">Charlie</h1>
-            <small class="text-dark">LGU Assistance</small>
+
+    <header class="py-3 mb-3 border-bottom position-fixed top-0 w-100 bg-purple shadow-sm zindex-1030">
+        <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+          <!-- Left section with logo and text -->
+          <div class="d-flex align-items-center">
+            <img class="me-3 rounded-circle img-fluid cschat-border-icon" src="https://static.ada.support/images/57202178-087d-403a-a58b-3df91600226f.png" alt="" width="48" height="38">
+            <div class="lh-1">
+              <h1 class="h5 mb-0 text-dark lh-1">Charlie</h1>
+              <small class="text-dark">LGU Assistance</small>
+            </div>
+          </div>
+      
+          <!-- Right section with Minimize and Close buttons -->
+          <div class="d-flex align-items-center justify-content-end">
+            <div class="flex-shrink-0">
+              <button class="btn btn-light me-0" aria-label="Minimize">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19,11H5a1,1,0,0,0,0,2H19a1,1,0,0,0,0-2Z"></path>
+                </svg>
+              </button>
+              <button class="btn btn-light" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"></path>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-        <div>
-          <button class="btn btn-light me-0" aria-label="Minimize">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19,11H5a1,1,0,0,0,0,2H19a1,1,0,0,0,0-2Z"></path>
-              </svg>
-          </button>
-          <button class="btn btn-light" aria-label="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
+      </header>
       
-    <div class="px-4 py-3 my-3 text-center">
-        <img class="d-block mx-auto rounded-circle img-fluid" src="https://static.ada.support/images/57202178-087d-403a-a58b-3df91600226f.png" alt="" width="72" height="57">
-        <p class="h2">Charlie </p>
-        <div class="col-lg-6 mx-auto">
-            <p class="text-muted">By engaging in this chat, you consent to our Privacy Policy.</p>
-          
-        </div>
+      <!-- Main content -->
+      <div class="pt-5 mt-5">
+        
+        <div class="px-4 py-3 my-3 text-center">
+            <img class="d-block mx-auto rounded-circle img-fluid cschat-border-icon" src="https://static.ada.support/images/57202178-087d-403a-a58b-3df91600226f.png" alt="" width="72" height="57">
+            <p class="h2">Charlie </p>
+            <div class="col-lg-6 mx-auto">
+                <p class="text-muted">By engaging in this chat, you consent to our Privacy Policy.</p>
+              
+            </div>
+          </div>
+
+
+
+
       </div>
+<!--End  Main content -->
+
+<!-- Fixed Footer -->
+<footer class="position-fixed bottom-0 w-100 bg-light py-3 shadow-lg">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+      <!-- File Upload -->
+      <!-- <div class="input-group">
+        <input type="file" class="form-control" id="fileUpload" aria-label="Upload File">
+      </div> -->
+  
+      <!-- Text Area for Chat -->
+      <div class="d-flex w-100">
+        <button class="btn btn-primary  me-2" type="button" id="sendMessageBtn">Send</button>
+        <textarea class="form-control me-2" id="chatText" rows="2" placeholder="Type your message..."></textarea>
+        <button class="btn btn-primary" type="button" id="sendMessageBtn">Send</button>
+      </div>
+    </div>
+  </footer>
+  
+ 
+   <!-- Padding to ensure content is not hidden under the fixed footer -->
+<div class="pt-5"></div>
+      
+   
 
     <!-- Optional JavaScript; choose one of the two! -->
 
