@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function csplugindist() {
 //Check if the CSS file is already in the document
-    if (!document.querySelector('link[href="https://jakajay113.github.io/csplugin/csclient.css"]')) {
+    if (!document.querySelector('link[href="https://jakajay113.github.io/csplugin/csclient-silay.css"]')) {
         // Create the <link> element for CSS
         const cssLink = document.createElement("link");
         cssLink.rel = "stylesheet";
-        cssLink.href = "https://jakajay113.github.io/csplugin/csclient.css";
+        cssLink.href = "https://jakajay113.github.io/csplugin/csclient-silay.css";
     
         // Find the div with class "csplguin-section"
         const pluginSection = document.querySelector(".csplguin-section");
@@ -157,11 +157,11 @@ function csplugindist() {
 
                     const botResponses = {
                         "How can I apply for a new business online?":
-                            "A. Register using this link or scan the QR code: <br/>https://eservices.bagocity.gov.ph/WebPortal/Register.aspx <br/>Note: Online registration is required only once.<br/><br/>B. After successful registration, you can apply for a new business. Follow this guide for the online new business application process.",
+                            "A. Register using this link or scan the QR code: <br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx <br/>Note: Online registration is required only once.<br/><br/>B. After successful registration, you can apply for a new business. Follow this guide for the online new business application process.",
                         "How can I renew my business online?":
-                            "A. Register using this link or scan the QR code:<br/> https://eservices.bagocity.gov.ph/WebPortal/Register.aspx  <br/> After successful registration, you can now enroll your business. <br/>(Note: The Business Account Number (BAN) and Official Receipt (O.R.) number can be found on your latest business permit)<br/>• Enter the Business Account Number (BAN).<br/>• Enter the latest Official Receipt (O.R.) number.<br/>• Click “Enroll.”<br/>• The BPLO and relevant offices will validate your business enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and business enrollment are one-time processes. <br/>Follow this guide for the online renewal of your business.",
+                            "A. Register using this link or scan the QR code:<br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx  <br/> After successful registration, you can now enroll your business. <br/>(Note: The Business Account Number (BAN) and Official Receipt (O.R.) number can be found on your latest business permit)<br/>• Enter the Business Account Number (BAN).<br/>• Enter the latest Official Receipt (O.R.) number.<br/>• Click “Enroll.”<br/>• The BPLO and relevant offices will validate your business enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and business enrollment are one-time processes. <br/>Follow this guide for the online renewal of your business.",
                         "How can I pay my real property tax due?":
-                            "A. Register using this link or scan the QR code:<br/> https://eservices.bagocity.gov.ph/WebPortal/Register.aspx <br/> After successful registration, you can now enroll your Real Property. <br/> (Note: The Tax Declaration Number (TDN) and Official Receipt (O.R.) number can be found on your latest RPT Official Receipts)<br/>• Enter the Tax Declaration Number (TDN).<br/>• Enter the latest Official Receipt (O.R.) number.\n• Click “Enroll.”<br/>• The Landtax and assessor will validate your Real Property Enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and real property enrollment are one-time processes. <br/>Follow this guide for the online real property payment.",
+                            "A. Register using this link or scan the QR code:<br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx <br/> After successful registration, you can now enroll your Real Property. <br/> (Note: The Tax Declaration Number (TDN) and Official Receipt (O.R.) number can be found on your latest RPT Official Receipts)<br/>• Enter the Tax Declaration Number (TDN).<br/>• Enter the latest Official Receipt (O.R.) number.\n• Click “Enroll.”<br/>• The Landtax and assessor will validate your Real Property Enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and real property enrollment are one-time processes. <br/>Follow this guide for the online real property payment.",
                         "Chat with Agent?": "Connecting to Agent.......",
                     };
 
@@ -271,7 +271,7 @@ function csplugindist() {
                             data: JSON.stringify(logindata),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
+                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
                                 // csloader();
                             },
                             success: function (response) {
@@ -326,7 +326,7 @@ function csplugindist() {
                             data: JSON.stringify(roomdata),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
+                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
                                 // csloader();
                             },
                             success: function (response) {
@@ -356,7 +356,7 @@ function csplugindist() {
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
+                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
                             },
                             success: function (response) {
                                 // Remove any temporary loading message or last placeholder
@@ -674,7 +674,7 @@ function csplugindist() {
                             data: JSON.stringify(dsfsdfsdf),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
+                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
                             },
                             success: function (response) {
                                 console.log(response);
@@ -725,7 +725,7 @@ function csplugindist() {
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
+                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
                             },
                             success: function (response) {
                                 const chatData = response.data.ChatSpecificInformation;
