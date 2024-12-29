@@ -30,7 +30,7 @@ function csplugindist() {
                             <div class="chatbox-top">
                                 <div class="chatbox-avatar">
                                     <a href="#">
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3XYBqSnLSEwbzKQz4oOYYXvQAp6qzDKMoVg&s" />
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS2F20D8i4IvWvMEeo7eBWcqXn3cf5MGuNPA&s"/>
                                     </a>
                                 </div>
                                 <div class="chat-partner-name">
