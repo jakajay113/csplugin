@@ -217,11 +217,11 @@ function cseen(asdasdasdciid,gfgfgcname){
                                                 if(messageClass =="sender"){
                                                     filevalueData = chat.file_path === "Message Unsend" ? chat.file_path 
                                                     : `<a href="https://eservices.bagocity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #000;">${chat.file_path.split('/').pop()}</a>`;
-                                                   // filevalueData = `<a href="https://eservices.bagocity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #000;">${chat.file_path.split('/').pop()}</a>`;
+                                                   // filevalueData = `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #000;">${chat.file_path.split('/').pop()}</a>`;
                                                 }else{
                                                     filevalueData = chat.file_path === "Message Unsend" ? chat.file_path 
                                                     : `<a href="https://eservices.bagocity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #fff;">${chat.file_path.split('/').pop()}</a>`;
-                                                    //filevalueData = `<a href="https://eservices.bagocity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #fff;">${chat.file_path.split('/').pop()}</a>`;
+                                                    //filevalueData = `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #fff;">${chat.file_path.split('/').pop()}</a>`;
                                                 }
                                               
                                             } else {
