@@ -267,7 +267,7 @@ function csplugindist() {
                             type: "POST",
                             async: true,
                             cache: false,
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostAuthenticateOAIMS",
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api/api/v1/spidcproxy/chatSupportAppPostAuthenticateOAIMS",
                             data: JSON.stringify(logindata),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
@@ -322,7 +322,7 @@ function csplugindist() {
                             type: "POST",
                             async: true,
                             cache: false,
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api/api/v1/spidcproxy/chatSupportAppPostOAIMS",
                             data: JSON.stringify(roomdata),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
@@ -352,7 +352,7 @@ function csplugindist() {
 
                     function csconvo() {
                         $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
@@ -386,18 +386,18 @@ function csplugindist() {
                                                 if (chat.file_path !== "") {
                                                     let fileElement = "";
                                                     if (chat.file_type === "image/jpeg" || chat.file_type === "image/png") {
-                                                        fileElement = `<img src="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" alt="Attachment" onclick="viewFullScreen('${
-                                                            "https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path
+                                                        fileElement = `<img src="${"https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path}" alt="Attachment" onclick="viewFullScreen('${
+                                                            "https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path
                                                         }')" style="cursor: pointer;width: 100%;height: 100px;">`;
                                                     } else if (chat.file_type === "video/mp4") {
                                                         fileElement = `<video controls><source src="${chat.file_path}" type="video/mp4"></video>`;
                                                     } else if (chat.file_type === "application/pdf") {
                                                         if (messageClass === "message-box") {
-                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
+                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path}" download="${chat.file_path
                                                                 .split("/")
                                                                 .pop()}" style="color: white;">${chat.file_path.split("/").pop()}</a>`;
                                                         } else {
-                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
+                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path}" download="${chat.file_path
                                                                 .split("/")
                                                                 .pop()}" style="color: #716060;">${chat.file_path.split("/").pop()}</a>`;
                                                         }
@@ -535,7 +535,7 @@ function csplugindist() {
                         // If there is no file, handle it as needed
                         $.ajax({
                             type: "POST",
-                            url: "/spidc_web_api_test/CSPluginServer/ChatSupport.aspx/SaveFile",
+                            url: "/spidc_web_api/CSPluginServer/ChatSupport.aspx/SaveFile",
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             data: JSON.stringify({ fileName: null, fileData: null, fileType: null, message: message, uID: uID, cID: cID }),
@@ -557,7 +557,7 @@ function csplugindist() {
                         //     var fileData = reader.result.split(',')[1]; // Remove data URL prefix
                         //     $.ajax({
                         //         type: "POST",
-                        //         url: "/spidc_web_api_test/CSPluginServer/ChatSupport.aspx/SaveFile",
+                        //         url: "/spidc_web_api/CSPluginServer/ChatSupport.aspx/SaveFile",
                         //         contentType: "application/json; charset=utf-8",
                         //         dataType: "json",
                         //         data: JSON.stringify({ fileName: file.name, fileData: fileData, fileType: file.type, message: message, uID: uID, cID: cID }),
@@ -631,7 +631,7 @@ function csplugindist() {
                             var fileData = reader.result.split(",")[1]; // Remove data URL prefix
                             $.ajax({
                                 type: "POST",
-                                url: "/spidc_web_api_test/CSPluginServer/ChatSupport.aspx/SaveFile",
+                                url: "/spidc_web_api/CSPluginServer/ChatSupport.aspx/SaveFile",
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 data: JSON.stringify({ fileName: file.name, fileData: fileData, fileType: file.type, message: null, uID: uID, cID: cID }),
@@ -670,7 +670,7 @@ function csplugindist() {
                             type: "POST",
                             async: true,
                             cache: false,
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api/api/v1/spidcproxy/chatSupportAppPostOAIMS",
                             data: JSON.stringify(dsfsdfsdf),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
@@ -721,7 +721,7 @@ function csplugindist() {
 
                     function csconvoClientMessageUnsendUpdating() {
                         $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
