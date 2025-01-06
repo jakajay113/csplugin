@@ -471,7 +471,7 @@ message-area
             height: 0;
             border-style: solid;
             border-width: 0 12px 15px 12px;
-            border-color: transparent transparent #4b7bec transparent;
+            border-color: transparent transparent #FFF2F2 transparent;
             -webkit-transform: rotate(37deg);
             -ms-transform: rotate(37deg);
             transform: rotate(37deg);
