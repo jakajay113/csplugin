@@ -370,7 +370,7 @@ message-area
         .msg-head {
             padding: 15px;
             border-bottom: 1px solid #ccc;
-            background: #3867d6;
+            background: #da1111;
         }
 
         .moreoption {
@@ -580,7 +580,7 @@ message-area
 
         .send-box button {
             border: none;
-            background: #3867d6;
+            background: #da1111;
             padding: 0.375rem 5px;
             color: #fff;
             border-radius: 0.25rem;
@@ -608,7 +608,7 @@ message-area
             margin-right: 5px;
             margin-bottom: 5px;
             overflow: hidden;
-            color:#3867d6
+            color:#da1111
         }
 
         .send-btns .button-wrapper span.label {
