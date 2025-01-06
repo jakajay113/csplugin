@@ -351,7 +351,7 @@ message-area
         }
 
         .msg-head h3 {
-            color: rgb(218, 17, 17);
+            color: #ffff;
             font-size: 18px;
             font-weight: 600;
             line-height: 1.5;
