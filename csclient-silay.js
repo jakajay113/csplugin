@@ -387,7 +387,7 @@ function csplugindist() {
                                                     let fileElement = "";
                                                     if (chat.file_type === "image/jpeg" || chat.file_type === "image/png") {
                                                         fileElement = `<img src="${"https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path}" alt="Attachment" onclick="viewFullScreen('${
-                                                            "https://eservices.bagocity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path
+                                                            "https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path
                                                         }')" style="cursor: pointer;width: 100%;height: 100px;">`;
                                                     } else if (chat.file_type === "video/mp4") {
                                                         fileElement = `<video controls><source src="${chat.file_path}" type="video/mp4"></video>`;
