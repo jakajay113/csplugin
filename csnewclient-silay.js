@@ -465,7 +465,7 @@ function csnewconvo() {
 
                     function csconvo() {
                         $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SS1000UID"),
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
@@ -804,7 +804,7 @@ function csnewconvo() {
 
                     function csconvoClientMessageUnsendUpdating() {
                         $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SSUCID"),
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SS1000UID"),
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
