@@ -44,7 +44,7 @@ function csplugindist() {
     
                             <div class="chat-messages">
                                
-                               
+                                
                             </div>
     
                             <div class="chat-input-holder">
@@ -162,14 +162,14 @@ function csplugindist() {
                         "Chat with Agent?": "Connecting to Agent.......",
                     };
 
-                    Updated follow-up questions
+                    // Updated follow-up questions
                     const followUpQuestions1 = ["Do you need help with anything else?", "Chat with Agent?"];
                     const followUpQuestions2 = ["Do you need help with anything else?", "Chat with Agent?"];
                     const followUpQuestions3 = ["Do you need help with anything else?", "Chat with Agent?"];
 
                     const originalQuestion = ["How can I apply for a new business online?", "How can I renew my business online?", "How can I pay my real property tax due?"];
 
-                    Handle bot question clicks
+                    // Handle bot question clicks
                     $(".chat-messages").on("click", ".bot-question", function () {
                         const questionText = $(this).text();
 
@@ -238,13 +238,13 @@ function csplugindist() {
                         scrollToBottom();
                     });
 
-                    Save messages to local storage
+                    // Save messages to local storage
                     function saveMessages() {
                         const messages = $(".chat-messages").html();
                         sessionStorage.setItem("chatMessages", messages);
                     }
 
-                    Load messages from local storage
+                    // Load messages from local storage
                     function loadMessages() {
                         const savedMessages = sessionStorage.getItem("chatMessages");
                         if (savedMessages) {
@@ -455,29 +455,6 @@ function csplugindist() {
 
                     /*  chat timestamp*/
                     function timeAgo(dateString) {
-                        const now = new Date();
-                        const then = new Date(dateString);
-                        const diff = now - then;
-
-                        if (diff < 1000) {
-                            return "just now"; // Show "just now" for times under 1 second
-                        }
-
-                        const seconds = Math.floor(diff / 1000);
-                        const minutes = Math.floor(seconds / 60);
-                        const hours = Math.floor(minutes / 60);
-                        const days = Math.floor(hours / 24);
-
-                        if (days > 0) {
-                            return `${days}d ago`;
-                        }
-                        if (hours > 0) {
-                            return `${hours}h ago`;
-                        }
-                        if (minutes > 0) {
-                            return `${minutes}m ago`;
-                        }
-                        return `${seconds}s ago`;
                     }
                     /* end chat timestamp*/
 
@@ -508,13 +485,6 @@ function csplugindist() {
                             const reader = new FileReader();
 
                             reader.onload = (e) => {
-                                // At this point, the file is read into memory.
-                                // You can now check the file type directly from the File object
-                                if (file.type.startsWith("video/")) {
-                                    alert("Video files are not allowed");
-                                } else {
-                                    //alert('File is OK');
-                                }
                             };
 
                             // Start reading the file as a data URL (base64 encoded string)
@@ -931,45 +901,4 @@ function csplugindist() {
 }
 
 function viewFullScreen(src) {
-    const fullScreenContainer = document.createElement("div");
-    fullScreenContainer.style.position = "fixed";
-    fullScreenContainer.style.top = "0";
-    fullScreenContainer.style.left = "0";
-    fullScreenContainer.style.width = "100%";
-    fullScreenContainer.style.height = "100%";
-    fullScreenContainer.style.backgroundColor = "rgba(0,0,0,0.8";
-    fullScreenContainer.style.display = "flex";
-    fullScreenContainer.style.alignItems = "center";
-    fullScreenContainer.style.justifyContent = "center";
-    fullScreenContainer.style.zIndex = "1000";
-    fullScreenContainer.style.cursor = "pointer";
-
-    const img = document.createElement("img");
-    img.src = src;
-    img.style.maxWidth = "90%";
-    img.style.maxHeight = "90%";
-    fullScreenContainer.appendChild(img);
-
-    const closeButton = document.createElement("button");
-    closeButton.textContent = "X";
-    closeButton.style.position = "absolute";
-    closeButton.style.top = "20px";
-    closeButton.style.right = "20px";
-    closeButton.style.backgroundColor = "transparent";
-    closeButton.style.border = "none";
-    closeButton.style.padding = "10px";
-    closeButton.style.cursor = "pointer";
-    closeButton.onclick = () => document.body.removeChild(fullScreenContainer);
-    fullScreenContainer.appendChild(closeButton);
-
-    fullScreenContainer.onclick = () => document.body.removeChild(fullScreenContainer);
-
-    document.body.appendChild(fullScreenContainer);
-
-    document.addEventListener("keydown", function handleEscKey(e) {
-        if (e.key === "Escape") {
-            document.body.removeChild(fullScreenContainer);
-            document.removeEventListener("keydown", handleEscKey);
-        }
-    });
 }
