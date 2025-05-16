@@ -347,7 +347,7 @@ function csplugindist() {
 
 
 
-
+csnewconvo();
 
 function csnewconvo() {
                         $.ajax({
