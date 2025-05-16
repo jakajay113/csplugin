@@ -105,7 +105,8 @@ function csplugindist() {
                 $(function () {
                     // Get the chatbox state from sessionStorage or default to 'minimized' if not set
                     let chatboxState = sessionStorage.getItem("chatboxState") || "minimized";
-
+                    auth();
+                 csnewconvo();
                     // loadMessages();
 
                     // Apply the saved state (open or minimized)
@@ -247,8 +248,7 @@ function csplugindist() {
 
 
 
-auth();
-csnewconvo();
+
 function csnewconvo() {
                         $.ajax({
                             url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SS1000UID"),
