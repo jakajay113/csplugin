@@ -44,7 +44,8 @@ function csplugindist() {
     
                             <div class="chat-messages">
                                
-                             
+                             <div class="bot-box"></div>
+                             <div class="message-box"></div>
 
                             </div>
     
@@ -343,6 +344,120 @@ function csplugindist() {
                             },
                         });
                     }
+
+
+
+
+
+function csnewconvo() {
+                        $.ajax({
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SS1000UID"),
+                            type: "GET",
+                            dataType: "json",
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                            },
+                            success: function (response) {
+                              
+                                if (response && response.data && response.data.ChatSpecificInformation) {
+                                    const chatData = response.data.ChatSpecificInformation;
+
+                                    chatData.forEach((chat) => {
+                                        // Check if this message ID has already been processed
+                                        if (!processedMessageIds.includes(chat.message_id)) {
+                                            const messageClass = chat.sender_id === sessionStorage.getItem("SS1000UID") ? "message-box" : "bot-box";
+                                            let chatMessage = "";
+
+                                            // Check for any message text or file attachment
+                                            if (chat.message !== "" || chat.file_path !== "") {
+                                                const csactionbtn = chat.sender_id === sessionStorage.getItem("SS1000UID") ? "" : "";
+                                                chatMessage = csactionbtn + '<div class="message-box-holder newtooltip">\n' + '<div class="' + messageClass + '">\n';
+
+                                                // Append the message text if it exists
+                                                if (chat.message !== "") {
+                                                    chatMessage += '<p style="margin-bottom: 0px;">' + chat.message + "</p>\n";
+                                                }
+
+                                                // Append the file if it exists and handle file types
+                                                if (chat.file_path !== "") {
+                                                    let fileElement = "";
+                                                    if (chat.file_type === "image/jpeg" || chat.file_type === "image/png") {
+                                                        fileElement = `<img src="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" alt="Attachment" onclick="viewFullScreen('${
+                                                            "https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path
+                                                        }')" style="cursor: pointer;width: 100%;height: 100px;">`;
+                                                    } else if (chat.file_type === "video/mp4") {
+                                                        fileElement = `<video controls><source src="${chat.file_path}" type="video/mp4"></video>`;
+                                                    } else if (chat.file_type === "application/pdf") {
+                                                        if (messageClass === "message-box") {
+                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
+                                                                .split("/")
+                                                                .pop()}" style="color: white;">${chat.file_path.split("/").pop()}</a>`;
+                                                        } else {
+                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
+                                                                .split("/")
+                                                                .pop()}" style="color: #716060;">${chat.file_path.split("/").pop()}</a>`;
+                                                        }
+                                                    }
+
+                                                    chatMessage += '<div style="margin-top: 0px;">' + fileElement + "</div>\n";
+                                                }
+                                                let cstimepostion = "cstimeposition";
+                                                let chatMessageToolTip = "";
+                                                if (messageClass === "message-box") {
+                                                    cstimepostion = "";
+                                                    chatMessageToolTip = '<span class="newtooltip-text csthaction" data-id="' + chat.message_id + '"><i class="fa fa-trash csicon" aria-hidden="true"></i> Unsend</span>';
+                                                } else {
+                                                    cstimepostion = "cstimeposition";
+                                                    chatMessageToolTip = '<span class="csthaction" data-id="' + chat.message_id + '"></span>';
+                                                }
+
+                                                chatMessage +=
+                                                    "</div>\n" + // Close message-box or bot-box
+                                                    "" +
+                                                    chatMessageToolTip +
+                                                    "\n" +
+                                                    '<span class="' +
+                                                    cstimepostion +
+                                                    '">' +
+                                                    timeAgo(chat.sent_at) +
+                                                    "</span>\n" +
+                                                    "</div>"; // Close message-box-holder
+
+                                                // +'<span>' + timeAgo(chat.sent_at) + '</span>\n'
+
+                                                // Append to chat container
+                                                $(".chat-messages").append(chatMessage);
+
+                                                // Scroll to the bottom after showing new response
+                                                scrollToBottom();
+                                            }
+
+                                            // Store this message ID in the processedMessageIds array
+                                            processedMessageIds.push(chat.message_id);
+
+                                            // Save the updated processedMessageIds to sessionStorage
+                                            //sessionStorage.setItem("processedMessageIds", JSON.stringify(processedMessageIds));
+
+                                            // Save messages to local storage
+                                            //saveMessages();
+                                        }
+                                    });
+                                } else {
+                                    console.error("Unexpected response structure:", response);
+                                }
+                            },
+                            error: function (xhr, status, errorThrown) {
+                                console.log("Error fetching chat convo:", xhr.responseText);
+                            },
+                        });
+                    }
+
+
+
+
+
+
+                    
 
                     // Retrieve processed message IDs from sessionStorage or initialize to an empty array
                     let processedMessageIds = JSON.parse(sessionStorage.getItem("processedMessageIds")) || [];
