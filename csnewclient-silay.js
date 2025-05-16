@@ -287,7 +287,7 @@ function csplugindist() {
                                         // Set other session data
                                         sessionStorage.setItem('SSUCSWA', '1');
                                         // Proceed with RoomCreation
-                                        RoomCreation();
+                                       // RoomCreation();
                                     } else {
                                         console.log("Unexpected response format or missing data properties.");
                                     }
@@ -347,7 +347,7 @@ function csplugindist() {
 
 
 
-csnewconvo();
+auth();
 
 function csnewconvo() {
                         $.ajax({
