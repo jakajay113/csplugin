@@ -43,7 +43,8 @@ function csplugindist() {
                             </div>
     
                             <div class="chat-messages">
-                                
+                               
+                                <div class="message-box-holder bot-question"><div class="bot-box">Chat with Agent?</div></div>
                             </div>
     
                             <div class="chat-input-holder">
