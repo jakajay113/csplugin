@@ -152,106 +152,106 @@ function csplugindist() {
                         }
                     });
 
-                    const botResponses = {
-                        "How can I apply for a new business online?":
-                            "A. Register using this link or scan the QR code: <br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx <br/>Note: Online registration is required only once.<br/><br/>B. After successful registration, you can apply for a new business. Follow this guide for the online new business application process.",
-                        "How can I renew my business online?":
-                            "A. Register using this link or scan the QR code:<br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx  <br/> After successful registration, you can now enroll your business. <br/>(Note: The Business Account Number (BAN) and Official Receipt (O.R.) number can be found on your latest business permit)<br/>• Enter the Business Account Number (BAN).<br/>• Enter the latest Official Receipt (O.R.) number.<br/>• Click “Enroll.”<br/>• The BPLO and relevant offices will validate your business enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and business enrollment are one-time processes. <br/>Follow this guide for the online renewal of your business.",
-                        "How can I pay my real property tax due?":
-                            "A. Register using this link or scan the QR code:<br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx <br/> After successful registration, you can now enroll your Real Property. <br/> (Note: The Tax Declaration Number (TDN) and Official Receipt (O.R.) number can be found on your latest RPT Official Receipts)<br/>• Enter the Tax Declaration Number (TDN).<br/>• Enter the latest Official Receipt (O.R.) number.\n• Click “Enroll.”<br/>• The Landtax and assessor will validate your Real Property Enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and real property enrollment are one-time processes. <br/>Follow this guide for the online real property payment.",
-                        "Chat with Agent?": "Connecting to Agent.......",
-                    };
+                    // const botResponses = {
+                    //     "How can I apply for a new business online?":
+                    //         "A. Register using this link or scan the QR code: <br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx <br/>Note: Online registration is required only once.<br/><br/>B. After successful registration, you can apply for a new business. Follow this guide for the online new business application process.",
+                    //     "How can I renew my business online?":
+                    //         "A. Register using this link or scan the QR code:<br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx  <br/> After successful registration, you can now enroll your business. <br/>(Note: The Business Account Number (BAN) and Official Receipt (O.R.) number can be found on your latest business permit)<br/>• Enter the Business Account Number (BAN).<br/>• Enter the latest Official Receipt (O.R.) number.<br/>• Click “Enroll.”<br/>• The BPLO and relevant offices will validate your business enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and business enrollment are one-time processes. <br/>Follow this guide for the online renewal of your business.",
+                    //     "How can I pay my real property tax due?":
+                    //         "A. Register using this link or scan the QR code:<br/> https://bizportal.silaycity.gov.ph/WebPortal/Register.aspx <br/> After successful registration, you can now enroll your Real Property. <br/> (Note: The Tax Declaration Number (TDN) and Official Receipt (O.R.) number can be found on your latest RPT Official Receipts)<br/>• Enter the Tax Declaration Number (TDN).<br/>• Enter the latest Official Receipt (O.R.) number.\n• Click “Enroll.”<br/>• The Landtax and assessor will validate your Real Property Enrollment.<br/><br/>B. Once validation is complete, you will receive an email regarding the status of your enrollment.<br/>Note: Both online registration and real property enrollment are one-time processes. <br/>Follow this guide for the online real property payment.",
+                    //     "Chat with Agent?": "Connecting to Agent.......",
+                    // };
 
                     // Updated follow-up questions
-                    const followUpQuestions1 = ["Do you need help with anything else?", "Chat with Agent?"];
-                    const followUpQuestions2 = ["Do you need help with anything else?", "Chat with Agent?"];
-                    const followUpQuestions3 = ["Do you need help with anything else?", "Chat with Agent?"];
+                    // const followUpQuestions1 = ["Do you need help with anything else?", "Chat with Agent?"];
+                    // const followUpQuestions2 = ["Do you need help with anything else?", "Chat with Agent?"];
+                    // const followUpQuestions3 = ["Do you need help with anything else?", "Chat with Agent?"];
 
-                    const originalQuestion = ["How can I apply for a new business online?", "How can I renew my business online?", "How can I pay my real property tax due?"];
+                    // const originalQuestion = ["How can I apply for a new business online?", "How can I renew my business online?", "How can I pay my real property tax due?"];
 
                     // Handle bot question clicks
-                    $(".chat-messages").on("click", ".bot-question", function () {
-                        const questionText = $(this).text();
+                    // $(".chat-messages").on("click", ".bot-question", function () {
+                    //     const questionText = $(this).text();
 
-                        // Retrieve the existing chat messages
-                        let existingMessages = $(".chat-messages").html();
+                    //     // Retrieve the existing chat messages
+                    //     let existingMessages = $(".chat-messages").html();
 
-                        // Create a new message box for the user's selected question
-                        const userQuestionHolder = $('<div class="message-box-holder"></div>');
-                        const userQuestionBox = $('<div class="message-box"></div>').text(questionText);
-                        userQuestionHolder.append(userQuestionBox);
+                    //     // Create a new message box for the user's selected question
+                    //     const userQuestionHolder = $('<div class="message-box-holder"></div>');
+                    //     const userQuestionBox = $('<div class="message-box"></div>').text(questionText);
+                    //     userQuestionHolder.append(userQuestionBox);
 
-                        // Append the new question to the existing messages
-                        existingMessages += userQuestionHolder.prop("outerHTML");
+                    //     // Append the new question to the existing messages
+                    //     existingMessages += userQuestionHolder.prop("outerHTML");
 
-                        const responseText = botResponses[questionText];
+                    //     const responseText = botResponses[questionText];
 
-                        // Create a new message box for the bot's response
-                        if (questionText === "Do you need help with anything else?") {
-                            // Optionally handle follow-up if needed
-                        } else {
-                            const botResponseHolder = $('<div class="message-box-holder"></div>');
-                            const botResponseBox = $('<div class="bot-box"></div>').html(responseText);
-                            botResponseHolder.append(botResponseBox);
+                    //     // Create a new message box for the bot's response
+                    //     if (questionText === "Do you need help with anything else?") {
+                    //         // Optionally handle follow-up if needed
+                    //     } else {
+                    //         const botResponseHolder = $('<div class="message-box-holder"></div>');
+                    //         const botResponseBox = $('<div class="bot-box"></div>').html(responseText);
+                    //         botResponseHolder.append(botResponseBox);
 
-                            // Append the bot's response to the existing messages
-                            existingMessages += botResponseHolder.prop("outerHTML");
-                        }
+                    //         // Append the bot's response to the existing messages
+                    //         existingMessages += botResponseHolder.prop("outerHTML");
+                    //     }
 
-                        // Determine follow-up questions based on the original question
-                        let followUpQuestions;
-                        if (questionText === "How can I apply for a new business online?") {
-                            followUpQuestions = followUpQuestions1;
-                        } else if (questionText === "How can I renew my business online?") {
-                            followUpQuestions = followUpQuestions2;
-                        } else if (questionText === "How can I pay my real property tax due?") {
-                            followUpQuestions = followUpQuestions3;
-                        } else if (questionText === "Do you need help with anything else?") {
-                            followUpQuestions = originalQuestion;
-                        } else {
-                            followUpQuestions = followUpQuestions1; // Adjust if you have a follow-up for this
-                        }
+                    //     // Determine follow-up questions based on the original question
+                    //     let followUpQuestions;
+                    //     if (questionText === "How can I apply for a new business online?") {
+                    //         followUpQuestions = followUpQuestions1;
+                    //     } else if (questionText === "How can I renew my business online?") {
+                    //         followUpQuestions = followUpQuestions2;
+                    //     } else if (questionText === "How can I pay my real property tax due?") {
+                    //         followUpQuestions = followUpQuestions3;
+                    //     } else if (questionText === "Do you need help with anything else?") {
+                    //         followUpQuestions = originalQuestion;
+                    //     } else {
+                    //         followUpQuestions = followUpQuestions1; // Adjust if you have a follow-up for this
+                    //     }
 
-                        if (responseText === "Connecting to Agent.......") {
-                            // Remove the last message and connect to the agent
-                            setTimeout(() => {
-                                auth();
-                            }, 1000); // 1000 milliseconds = 1 second
-                        } else {
-                            followUpQuestions.forEach((followUp) => {
-                                const followUpHolder = $('<div class="message-box-holder bot-question"></div>');
-                                const followUpBox = $('<div class="bot-box"></div>').html(followUp);
-                                followUpHolder.append(followUpBox);
+                    //     if (responseText === "Connecting to Agent.......") {
+                    //         // Remove the last message and connect to the agent
+                    //         setTimeout(() => {
+                    //             auth();
+                    //         }, 1000); // 1000 milliseconds = 1 second
+                    //     } else {
+                    //         followUpQuestions.forEach((followUp) => {
+                    //             const followUpHolder = $('<div class="message-box-holder bot-question"></div>');
+                    //             const followUpBox = $('<div class="bot-box"></div>').html(followUp);
+                    //             followUpHolder.append(followUpBox);
 
-                                // Append each follow-up question to the existing messages
-                                existingMessages += followUpHolder.prop("outerHTML");
-                            });
-                        }
+                    //             // Append each follow-up question to the existing messages
+                    //             existingMessages += followUpHolder.prop("outerHTML");
+                    //         });
+                    //     }
 
-                        // Update the chat window using .html() with the new content
-                        $(".chat-messages").html(existingMessages);
+                    //     // Update the chat window using .html() with the new content
+                    //     $(".chat-messages").html(existingMessages);
 
-                        // Save messages to local storage
-                        saveMessages();
+                    //     // Save messages to local storage
+                    //     saveMessages();
 
-                        // Scroll to the bottom after showing response
-                        scrollToBottom();
-                    });
+                    //     // Scroll to the bottom after showing response
+                    //     scrollToBottom();
+                    // });
 
                     // Save messages to local storage
-                    function saveMessages() {
-                        const messages = $(".chat-messages").html();
-                        sessionStorage.setItem("chatMessages", messages);
-                    }
+                    // function saveMessages() {
+                    //     const messages = $(".chat-messages").html();
+                    //     sessionStorage.setItem("chatMessages", messages);
+                    // }
 
                     // Load messages from local storage
-                    function loadMessages() {
-                        const savedMessages = sessionStorage.getItem("chatMessages");
-                        if (savedMessages) {
-                            $(".chat-messages").html(savedMessages);
-                            scrollToBottom(); // Scroll to bottom after loading
-                        }
-                    }
+                    // function loadMessages() {
+                    //     const savedMessages = sessionStorage.getItem("chatMessages");
+                    //     if (savedMessages) {
+                    //         $(".chat-messages").html(savedMessages);
+                    //         scrollToBottom(); // Scroll to bottom after loading
+                    //     }
+                    // }
 
                     function auth() {
                         //alert('Button clicked!');
