@@ -35,7 +35,7 @@ function csplugindist() {
                                 </div>
                                 <div class="chat-partner-name">
                                     <span class="status online"></span>
-                                    <a href="#">Chat Support - Online Payment</a>
+                                    <a href="#">Chat</a>
                                 </div>
                                 <div class="chatbox-icons">
                                     <a href="javascript:void(0);"><i class="fa fa-minus"></i></a>
@@ -43,11 +43,11 @@ function csplugindist() {
                             </div>
     
                             <div class="chat-messages">
-                                <div class="message-box-holder"><div class="bot-box">Hi, how can I help you?</div></div>
-                                <div class="message-box-holder bot-question"><div class="bot-box">How can I apply for a new business online?</div></div>
-                                <div class="message-box-holder bot-question"><div class="bot-box">How can I renew my business online?</div></div>
-                                <div class="message-box-holder bot-question"><div class="bot-box">How can I pay my real property tax due?</div></div>
-                                <div class="message-box-holder bot-question"><div class="bot-box">Chat with Agent?</div></div>
+                                // <div class="message-box-holder"><div class="bot-box">Hi, how can I help you?</div></div>
+                                // <div class="message-box-holder bot-question"><div class="bot-box">How can I apply for a new business online?</div></div>
+                                // <div class="message-box-holder bot-question"><div class="bot-box">How can I renew my business online?</div></div>
+                                // <div class="message-box-holder bot-question"><div class="bot-box">How can I pay my real property tax due?</div></div>
+                                // <div class="message-box-holder bot-question"><div class="bot-box">Chat with Agent?</div></div>
                             </div>
     
                             <div class="chat-input-holder">
