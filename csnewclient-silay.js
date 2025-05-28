@@ -609,7 +609,7 @@ function csplugindist() {
                             const cID = sessionStorage.getItem('SS1000UID');
                            uploadFile(file, message, uID, cID);
                             //alert(uID+" "+cID);
-                            document.getElementById("fileInput").value = "";
+                            document.getElementById("file-input").value = "";
                             document.getElementById("chatmessage").value = "";
 
                         }
@@ -667,28 +667,7 @@ function csplugindist() {
 
                             /* Upload File Ajax */
 
-                            function uploadFile(file, message, uID, cID) {
-                                //if (!file) {
-                                // If there is no file, handle it as needed
-                                $.ajax({
-                                    type: "POST",
-                                    url: "/spidc_web_api/CSPluginServer/ChatSupport.aspx/SaveFile",
-                                    contentType: "application/json; charset=utf-8",
-                                    dataType: "json",
-                                    data: JSON.stringify({ fileName: null, fileData: null, fileType: null, message: message, uID: uID, cID: cID }),
-                                    success: function (response) {
-                                        console.log(response.d);
-                                        //  csconvo(sessionStorage.getItem('activeChatItem'));
-                                        $("#file-input").val("");
-                                    },
-                                    error: function (xhr, status, error) {
-                                        console.log(xhr.responseText);
-                                        alert("Error: " + xhr.responseText); // Show detailed error
-                                    },
-                                });
-                                return; // Exit the function early
-                            
-                            }
+                           
 
                             fileInput.addEventListener("change", () => {
                                 var reader = new FileReader();
