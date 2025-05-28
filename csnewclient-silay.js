@@ -158,6 +158,59 @@ function csplugindist() {
                         }
                     });
 
+
+                 
+/*------------------------------ END AUTH --------------------------------------*/
+                  auth();
+                  function auth() {
+                        const logindata = {
+                            ActionType: "AUTH",
+                            Email: sessionStorage.getItem("LoginEmail"),
+                            Password: sessionStorage.getItem("LoginPassword"),
+                        };
+                        $.ajax({
+                            type: "POST",
+                            async: true,
+                            cache: false,
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostAuthenticateOAIMS",
+                            data: JSON.stringify(logindata),
+                            contentType: "application/json",
+                            beforeSend: function (xhr) {
+                                 xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                            },
+                            success: function (response) {
+                                    const userData = response; // No need for JSON.parse(JSON.stringify) if response is already an object
+                                    if (userData && userData.data && userData.data[0]) {
+                                        const user = userData.data[0];
+                                        
+                                        // Set sessionStorage items if data exists
+                                        sessionStorage.setItem('SS1000UID', user.IDNo);
+                                        sessionStorage.setItem('SS1000UT', user.UserType);
+                                        sessionStorage.setItem('SS1000FN', user.FirstName);
+                                        sessionStorage.setItem('SS1000LN', user.LastName);
+                                        sessionStorage.setItem('SS1000G', user.SetupGender);
+                                        // Set other session data
+                                        sessionStorage.setItem('SSUCSWA', '1');
+                                        // Proceed with RoomCreation
+                                        //RoomCreation();
+                                    } else {
+                                        console.log("Unexpected response format or missing data properties.");
+                                    }
+                              
+                            },
+                            error: function (xhr, status, errorThrown) {
+                                // HANDLES ERROR REPONSE
+                                //console.log(xhr.status); // Log the HTTP status code (e.g., 500)
+                                console.log(xhr.responseText); // Log the response text received from the server
+                                //console.log(errorThrown);
+                            },
+                        });
+                    }
+                    /*------------------------------ END AUTH --------------------------------------*/
+
+
+
+                 
                    
                   
                     /*------------------------------ END LOAD CONCVO--------------------------------------*/
