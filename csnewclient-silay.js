@@ -160,7 +160,7 @@ function csplugindist() {
 
 
                  
-/*------------------------------ END AUTH --------------------------------------*/
+/*------------------------------ END AUTH AND ROOM CREATION --------------------------------------*/
                   auth();
                   function auth() {
                         const logindata = {
@@ -192,7 +192,7 @@ function csplugindist() {
                                         // Set other session data
                                         sessionStorage.setItem('SSUCSWA', '1');
                                         // Proceed with RoomCreation
-                                        //RoomCreation();
+                                        RoomCreation();
                                     } else {
                                         console.log("Unexpected response format or missing data properties.");
                                     }
@@ -206,7 +206,42 @@ function csplugindist() {
                             },
                         });
                     }
-                    /*------------------------------ END AUTH --------------------------------------*/
+
+
+                      function RoomCreation() {
+                             //alert('Button clicked!');
+                             const roomdata = {
+                                 ActionType: "Create Chat Support",
+                                 CMSGID: null,
+                                 UID: sessionStorage.getItem("SS1000UID"),
+                             };
+                             $.ajax({
+                                 type: "POST",
+                                 async: true,
+                                 cache: false,
+                                 url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
+                                 data: JSON.stringify(roomdata),
+                                 contentType: "application/json",
+                                 beforeSend: function (xhr) {
+                                       xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                 },
+                                 success: function (response) {
+                                     console.log(response);
+                                     console.log(response.data);
+                                     sessionStorage.setItem("SSUCID", response.data);
+     
+                                     //csconvo(sessionStorage.getItem('SSUCID'));
+                                     //csconvo();
+                                 },
+                                 error: function (xhr, status, errorThrown) {
+                                     // HANDLES ERROR REPONSE
+                                     //console.log(xhr.status); // Log the HTTP status code (e.g., 500)
+                                     console.log(xhr.responseText); // Log the response text received from the server
+                                     //console.log(errorThrown);
+                                 },
+                             });
+                         }
+                    /*------------------------------ END AUTH AND ROOM CREATION --------------------------------------*/
 
 
 
