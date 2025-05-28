@@ -189,8 +189,7 @@ function csplugindist() {
                                         sessionStorage.setItem('SS1000FN', user.FirstName);
                                         sessionStorage.setItem('SS1000LN', user.LastName);
                                         sessionStorage.setItem('SS1000G', user.SetupGender);
-                                        // Set other session data
-                                        sessionStorage.setItem('SSUCSWA', '1');
+                                      
                                         // Proceed with RoomCreation
                                         RoomCreation();
                                     } else {
@@ -229,7 +228,8 @@ function csplugindist() {
                                      console.log(response);
                                      console.log(response.data);
                                      sessionStorage.setItem("SSUCID", response.data);
-     
+                                      // Set other session data
+                                      sessionStorage.setItem('SSUCSWA', '1');
                                      //csconvo(sessionStorage.getItem('SSUCID'));
                                      //csconvo();
                                  },
