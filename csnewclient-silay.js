@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
     document.onreadystatechange = function () {
         if (document.readyState !== "complete") {
         } else {
@@ -44,8 +44,7 @@ function csplugindist() {
     
                             <div class="chat-messages">
                                
-                             <div class="bot-box"></div>
-                             <div class="message-box"></div>
+                         
 
                             </div>
     
@@ -55,7 +54,7 @@ function csplugindist() {
                                 <button type="button" value="Send" class="message-send" id="btnmessagesend">Send</button>
                             </div>
                             <div class="attachment-panel">
-                                <input type="file" id="file-input" style="display: none;" />
+                                <input type="file" id="fileInput" style="display: none;" />
                             </div>
                         </div>
                     </div>
@@ -105,9 +104,11 @@ function csplugindist() {
                 $(function () {
                     // Get the chatbox state from sessionStorage or default to 'minimized' if not set
                     let chatboxState = sessionStorage.getItem("chatboxState") || "minimized";
-                    auth();
-                 csnewconvo();
-                    // loadMessages();
+                
+                    //Load Message  when page load 
+                     loadMessages();
+
+
 
                     // Apply the saved state (open or minimized)
                     if (chatboxState === "minimized") {
@@ -124,7 +125,9 @@ function csplugindist() {
                         // Save the current state in sessionStorage
                         if ($(this).closest(".chatbox").hasClass("chatbox-min")) {
                             sessionStorage.setItem("chatboxState", "minimized");
+                            //alert("close");
                         } else {
+                          //  alert("open");
                             sessionStorage.setItem("chatboxState", "open");
                         }
 
@@ -156,216 +159,42 @@ function csplugindist() {
                     });
 
                    
-                    function auth() {
-                        //alert('Button clicked!');
-                        const logindata = {
-                            ActionType: "AUTH",
-                            Email: sessionStorage.getItem("LoginEmail"),
-                            Password: sessionStorage.getItem("LoginPassword"),
-                        };
-                        $.ajax({
-                            type: "POST",
-                            async: true,
-                            cache: false,
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostAuthenticateOAIMS",
-                            data: JSON.stringify(logindata),
-                            contentType: "application/json",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
-                                // csloader();
-                            },
-                            success: function (response) {
-                                    const userData = response; // No need for JSON.parse(JSON.stringify) if response is already an object
-                                    if (userData && userData.data && userData.data[0]) {
-                                        const user = userData.data[0];
-                                        
-                                        // Set sessionStorage items if data exists
-                                        sessionStorage.setItem('SS1000UID', user.IDNo);
-                                        sessionStorage.setItem('SS1000UT', user.UserType);
-                                        sessionStorage.setItem('SS1000FN', user.FirstName);
-                                        sessionStorage.setItem('SS1000LN', user.LastName);
-                                        sessionStorage.setItem('SS1000G', user.SetupGender);
-                                        // Set other session data
-                                        sessionStorage.setItem('SSUCSWA', '1');
-                                        // Proceed with RoomCreation
-                                       // RoomCreation();
-                                    } else {
-                                        console.log("Unexpected response format or missing data properties.");
-                                    }
-                                    //const userData = JSON.parse(JSON.stringify(response));
-                                    // sessionStorage.setItem('SS1000UID', userData.data[0].IDNo);
-                                    // sessionStorage.setItem('SS1000UT', userData.data[0].UserType);
-                                    // sessionStorage.setItem('SS1000FN', userData.data[0].FirstName);
-                                    // sessionStorage.setItem('SS1000LN', userData.data[0].LastName);
-                                    // sessionStorage.setItem('SS1000G', userData.data[0].SetupGender);
-                                    // sessionStorage.setItem('SSUCSWA', '1');
-                                    // console.log(userData);
-                                    // RoomCreation();
-                            },
-                            error: function (xhr, status, errorThrown) {
-                                // HANDLES ERROR REPONSE
-                                //console.log(xhr.status); // Log the HTTP status code (e.g., 500)
-                                console.log(xhr.responseText); // Log the response text received from the server
-                                //console.log(errorThrown);
-                            },
-                        });
+                  
+                    /*------------------------------ END LOAD CONCVO--------------------------------------*/
+                    loadrealtimeconvo()
+                     function loadrealtimeconvo() {
+                        // Call csconvo immediately, then start polling every 2 seconds
+                        // csconvo(); // Initial call to fetch the chat immediately
+
+                        // Set an interval to call csconvo every 2 seconds
+                        setInterval(() => {
+                            //csconvo();
+                            //alert("test");
+                            // Check if the session storage value 'SSUCSWA' is equal to "1"
+                            // if (sessionStorage.getItem("SSUCSWA") === "1") {
+                            //     // Call the csconvo function if the condition is met
+                            //     csconvo();
+                            //     csconvoClientMessageUnsendUpdating();
+                            // } else {
+                            //     //Do Nothing
+                            // }
+                            csconvo();
+                            csconvoClientMessageUnsendUpdating();
+                            //alert("test");
+                        }, 2000); // Adjust the interval as needed (2000 milliseconds = 2 seconds)
                     }
-
-                    function RoomCreation() {
-                        //alert('Button clicked!');
-                        const roomdata = {
-                            ActionType: "Create Chat Support",
-                            CMSGID: null,
-                            UID: sessionStorage.getItem("SS1000UID"),
-                        };
-                        $.ajax({
-                            type: "POST",
-                            async: true,
-                            cache: false,
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
-                            data: JSON.stringify(roomdata),
-                            contentType: "application/json",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
-                                // csloader();
-                            },
-                            success: function (response) {
-                                console.log(response);
-                                console.log(response.data);
-                                sessionStorage.setItem("SSUCID", response.data);
-
-                                //csconvo(sessionStorage.getItem('SSUCID'));
-                                //csconvo();
-                            },
-                            error: function (xhr, status, errorThrown) {
-                                // HANDLES ERROR REPONSE
-                                //console.log(xhr.status); // Log the HTTP status code (e.g., 500)
-                                console.log(xhr.responseText); // Log the response text received from the server
-                                //console.log(errorThrown);
-                            },
-                        });
-                    }
+                  /* ------------------------------ END LOAD CONCVO--------------------------------------*/
 
 
-
-
-function csnewconvo() {
-                        $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SS1000UID"),
-                            type: "GET",
-                            dataType: "json",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
-                            },
-                            success: function (response) {
-                              
-                                if (response && response.data && response.data.ChatSpecificInformation) {
-                                    const chatData = response.data.ChatSpecificInformation;
-
-                                    chatData.forEach((chat) => {
-                                        // Check if this message ID has already been processed
-                                        if (!processedMessageIds.includes(chat.message_id)) {
-                                            const messageClass = chat.sender_id === sessionStorage.getItem("SS1000UID") ? "message-box" : "bot-box";
-                                            let chatMessage = "";
-
-                                            // Check for any message text or file attachment
-                                            if (chat.message !== "" || chat.file_path !== "") {
-                                                const csactionbtn = chat.sender_id === sessionStorage.getItem("SS1000UID") ? "" : "";
-                                                chatMessage = csactionbtn + '<div class="message-box-holder newtooltip">\n' + '<div class="' + messageClass + '">\n';
-
-                                                // Append the message text if it exists
-                                                if (chat.message !== "") {
-                                                    chatMessage += '<p style="margin-bottom: 0px;">' + chat.message + "</p>\n";
-                                                }
-
-                                                // Append the file if it exists and handle file types
-                                                if (chat.file_path !== "") {
-                                                    let fileElement = "";
-                                                    if (chat.file_type === "image/jpeg" || chat.file_type === "image/png") {
-                                                        fileElement = `<img src="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" alt="Attachment" onclick="viewFullScreen('${
-                                                            "https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer" + chat.file_path
-                                                        }')" style="cursor: pointer;width: 100%;height: 100px;">`;
-                                                    } else if (chat.file_type === "video/mp4") {
-                                                        fileElement = `<video controls><source src="${chat.file_path}" type="video/mp4"></video>`;
-                                                    } else if (chat.file_type === "application/pdf") {
-                                                        if (messageClass === "message-box") {
-                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
-                                                                .split("/")
-                                                                .pop()}" style="color: white;">${chat.file_path.split("/").pop()}</a>`;
-                                                        } else {
-                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
-                                                                .split("/")
-                                                                .pop()}" style="color: #716060;">${chat.file_path.split("/").pop()}</a>`;
-                                                        }
-                                                    }
-
-                                                    chatMessage += '<div style="margin-top: 0px;">' + fileElement + "</div>\n";
-                                                }
-                                                let cstimepostion = "cstimeposition";
-                                                let chatMessageToolTip = "";
-                                                if (messageClass === "message-box") {
-                                                    cstimepostion = "";
-                                                    chatMessageToolTip = '<span class="newtooltip-text csthaction" data-id="' + chat.message_id + '"><i class="fa fa-trash csicon" aria-hidden="true"></i> Unsend</span>';
-                                                } else {
-                                                    cstimepostion = "cstimeposition";
-                                                    chatMessageToolTip = '<span class="csthaction" data-id="' + chat.message_id + '"></span>';
-                                                }
-
-                                                chatMessage +=
-                                                    "</div>\n" + // Close message-box or bot-box
-                                                    "" +
-                                                    chatMessageToolTip +
-                                                    "\n" +
-                                                    '<span class="' +
-                                                    cstimepostion +
-                                                    '">' +
-                                                    timeAgo(chat.sent_at) +
-                                                    "</span>\n" +
-                                                    "</div>"; // Close message-box-holder
-
-                                                // +'<span>' + timeAgo(chat.sent_at) + '</span>\n'
-
-                                                // Append to chat container
-                                                $(".chat-messages").append(chatMessage);
-
-                                                // Scroll to the bottom after showing new response
-                                                scrollToBottom();
-                                            }
-
-                                            // Store this message ID in the processedMessageIds array
-                                            processedMessageIds.push(chat.message_id);
-
-                                            // Save the updated processedMessageIds to sessionStorage
-                                            //sessionStorage.setItem("processedMessageIds", JSON.stringify(processedMessageIds));
-
-                                            // Save messages to local storage
-                                            //saveMessages();
-                                        }
-                                    });
-                                } else {
-                                    console.error("Unexpected response structure:", response);
-                                }
-                            },
-                            error: function (xhr, status, errorThrown) {
-                                console.log("Error fetching chat convo:", xhr.responseText);
-                            },
-                        });
-                    }
-
-
-
-
-
-
-                    
-
-                    // Retrieve processed message IDs from sessionStorage or initialize to an empty array
+                  
+                  
+                    /* ------------------------------ END CONVO--------------------------------------*/
+                    var SS1000UID = "20241205000001"
                     let processedMessageIds = JSON.parse(sessionStorage.getItem("processedMessageIds")) || [];
-                    //let processedMessageIds = []; // Array to store processed message IDs
-
                     function csconvo() {
+                        
                         $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SS1000UID"),
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + SS1000UID,
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
@@ -374,7 +203,7 @@ function csnewconvo() {
                             success: function (response) {
                                 // Remove any temporary loading message or last placeholder
                                 //$('.chat-messages').children('.message-box-holder').last().remove();
-                                removeConnectingMessages();
+                                //removeConnectingMessages();
 
                                 if (response && response.data && response.data.ChatSpecificInformation) {
                                     const chatData = response.data.ChatSpecificInformation;
@@ -382,12 +211,12 @@ function csnewconvo() {
                                     chatData.forEach((chat) => {
                                         // Check if this message ID has already been processed
                                         if (!processedMessageIds.includes(chat.message_id)) {
-                                            const messageClass = chat.sender_id === sessionStorage.getItem("SS1000UID") ? "message-box" : "bot-box";
+                                            const messageClass = chat.sender_id === SS1000UID ? "message-box" : "bot-box";
                                             let chatMessage = "";
 
                                             // Check for any message text or file attachment
                                             if (chat.message !== "" || chat.file_path !== "") {
-                                                const csactionbtn = chat.sender_id === sessionStorage.getItem("SS1000UID") ? "" : "";
+                                                const csactionbtn = chat.sender_id === SS1000UID ? "" : "";
                                                 chatMessage = csactionbtn + '<div class="message-box-holder newtooltip">\n' + '<div class="' + messageClass + '">\n';
 
                                                 // Append the message text if it exists
@@ -451,10 +280,8 @@ function csnewconvo() {
 
                                             // Store this message ID in the processedMessageIds array
                                             processedMessageIds.push(chat.message_id);
-
                                             // Save the updated processedMessageIds to sessionStorage
                                             sessionStorage.setItem("processedMessageIds", JSON.stringify(processedMessageIds));
-
                                             // Save messages to local storage
                                             saveMessages();
                                         }
@@ -469,96 +296,214 @@ function csnewconvo() {
                         });
                     }
 
-                    /*  chat timestamp*/
-                    function timeAgo(dateString) {
-                    }
-                    /* end chat timestamp*/
+                    /* ------------------------------ END CONVO--------------------------------------*/
 
-                    // Function to remove specific bot messages
-                    function removeConnectingMessages() {
-                        // Remove the "Connecting to Agent......." message
-                        $(".message-box-holder")
-                            .filter(function () {
-                                return $(this).find(".bot-box").text().trim() === "Connecting to Agent.......";
-                            })
-                            .remove();
+                    /* ------------------------------ END CLIENT MESSAGE UNSEND UPDATING-------------------------------------*/
+                    function csconvoClientMessageUnsendUpdating() {
+                                        $.ajax({
+                                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + SS1000UID,
+                                            type: "GET",
+                                            dataType: "json",
+                                            beforeSend: function (xhr) {
+                                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                            },
+                                            success: function (response) {
+                                                const chatData = response.data.ChatSpecificInformation;
+                                                const filteredChatData = response.data.ChatSpecificInformation.filter(function (chat) {
+                                                    return chat.sender_id !== SS1000UID;
+                                                });
 
-                        // Remove any empty bot boxes
-                        $(".message-box-holder")
-                            .filter(function () {
-                                return $(this).find(".bot-box").is(":empty"); // Check if the bot box is empty
-                            })
-                            .remove();
-                    }
+                                                const filteredChatDataClentMsg = response.data.ChatSpecificInformation.filter(function (chat) {
+                                                    return chat.sender_id == SS1000UID;
+                                                });
 
-                    /* Input File Data Checker */
-                    const fileInput = document.getElementById("file-input");
+                                                filteredChatData.forEach((chat) => {
+                                                    //console.log(chat.message_id+" "+chat.message);
+                                                    if (chat.message == "Message Unsend" && chat.file_path == "") {
+                                                        //console.log("True");
+                                                        //Final Working For ALL
+                                                        let chatMessages = sessionStorage.getItem("chatMessages");
+                                                        // Define the target data-id and the new content
+                                                        const targetId = chat.message_id; // Change this to the desired data-id
+                                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
+                                                        // Create regex to find the message box containing a <p>
+                                                        const pRegex = new RegExp(`(<div class="bot-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Create regex to find the message box containing an <img>
+                                                        const imageRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Create regex to find the message box containing an <a>
+                                                        const linkRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Replace the content of the target <p> tag
+                                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
+                                                        // Replace the content of the target <img> with the new content
+                                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
+                                                        // Replace the content of the target <a> with the new content
+                                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
+                                                        // Save the updated HTML string back to sessionStorage
+                                                        // sessionStorage.setItem('chatMessages', chatMessages);
+                                                        //remove timne pattern
+                                                        const pattern = `<span class="csthaction" data-id="${targetId}"><\/span>\\s*<span class="cstimeposition">.*?<\/span>`;
+                                                        // Use a regular expression with 's' flag for multiline matching
+                                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
+                                                        sessionStorage.setItem("chatMessages", chatMessages);
+                                                    } else if (chat.file_path == "Message Unsend" && chat.message == "") {
+                                                        //Final Working For ALL
+                                                        let chatMessages = sessionStorage.getItem("chatMessages");
+                                                        // Define the target data-id and the new content
+                                                        const targetId = chat.message_id; // Change this to the desired data-id
+                                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
+                                                        // Create regex to find the message box containing a <p>
+                                                        const pRegex = new RegExp(`(<div class="bot-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Create regex to find the message box containing an <img>
+                                                        const imageRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Create regex to find the message box containing an <a>
+                                                        const linkRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Replace the content of the target <p> tag
+                                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
+                                                        // Replace the content of the target <img> with the new content
+                                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
+                                                        // Replace the content of the target <a> with the new content
+                                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
+                                                        // Save the updated HTML string back to sessionStorage
+                                                        // sessionStorage.setItem('chatMessages', chatMessages);
+                                                        const pattern = `<span class="csthaction" data-id="${targetId}"><\/span>\\s*<span class="cstimeposition">.*?<\/span>`;
+                                                        // Use a regular expression with 's' flag for multiline matching
+                                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
+                                                        sessionStorage.setItem("chatMessages", chatMessages);
+                                                    } else {
+                                                        //for all timesent
+                                                        let chatMessages = sessionStorage.getItem("chatMessages");
+                                                        const targetId = chat.message_id; // Change this to the desired data-id
 
-                    fileInput.addEventListener("change", () => {
-                        const file = fileInput.files[0];
+                                                        // Pattern 1: For the span with both 'newtooltip-text csthaction' classes and inner content for "just now"
+                                                        const pattern1 = new RegExp(`<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\\/span>\\s*<span class="">.*?<\\/span>`, "s");
 
-                        if (file) {
-                            const reader = new FileReader();
+                                                        // Pattern 2: For the simpler span structure with class 'cstimeposition' containing "just now"
+                                                        const pattern2 = new RegExp(`<span class="csthaction" data-id="${targetId}"><\\/span>\\s*<span class="cstimeposition">.*?<\\/span>`, "s");
 
-                            reader.onload = (e) => {
-                            };
+                                                        // Replace "just now" text in both patterns with "Updated Time"
+                                                        chatMessages = chatMessages.replace(pattern1, (match) => {
+                                                            // This will replace the 'just now' text in the second span with 'Updated Time'
+                                                            return match.replace(/<span class="">.*?<\/span>/, '<span class="">' + timeAgo(chat.sent_at) + "</span>");
+                                                        });
 
-                            // Start reading the file as a data URL (base64 encoded string)
-                            reader.readAsDataURL(file);
-                        } else {
-                            alert("No file selected");
-                        }
-                    });
-                    /*end Input File Data Checker */
+                                                        chatMessages = chatMessages.replace(pattern2, (match) => {
+                                                            // This will replace 'just now' with 'Updated Time' in the second span
+                                                            return match.replace(/<span class="cstimeposition">.*?<\/span>/, '<span class="cstimeposition">' + timeAgo(chat.sent_at) + "</span>");
+                                                        });
 
-                    /* Upload File Ajax */
+                                                        // Log the modified chatMessages to confirm the update
+                                                        //  console.log(targetId);
+                                                        //console.log(chatMessages);
+                                                        sessionStorage.setItem("chatMessages", chatMessages);
+                                                    }
+                                                });
 
-                    function uploadFile(file, message, uID, cID) {
-                        //if (!file) {
-                        // If there is no file, handle it as needed
-                        $.ajax({
-                            type: "POST",
-                            url: "/spidc_web_api_test/CSPluginServer/ChatSupport.aspx/SaveFile",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            data: JSON.stringify({ fileName: null, fileData: null, fileType: null, message: message, uID: uID, cID: cID }),
-                            success: function (response) {
-                                console.log(response.d);
-                                //  csconvo(sessionStorage.getItem('activeChatItem'));
-                                $("#fileInput").val("");
-                            },
-                            error: function (xhr, status, error) {
-                                console.log(xhr.responseText);
-                                alert("Error: " + xhr.responseText); // Show detailed error
-                            },
-                        });
-                        return; // Exit the function early
-                        //}
+                                                filteredChatDataClentMsg.forEach((chat) => {
+                                                    //console.log(chat.message_id+" "+chat.message);
+                                                    if (chat.message == "Message Unsend" && chat.file_path == "") {
+                                                        //console.log("True");
+                                                        //Final Working For ALL
+                                                        let chatMessages = sessionStorage.getItem("chatMessages");
+                                                        // Define the target data-id and the new content
+                                                        const targetId = chat.message_id; // Change this to the desired data-id
+                                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
+                                                        // Create regex to find the message box containing a <p>
+                                                        const pRegex = new RegExp(`(<div class="message-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Create regex to find the message box containing an <img>
+                                                        const imageRegex = new RegExp(
+                                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
+                                                            "i"
+                                                        );
+                                                        // Create regex to find the message box containing an <a>
+                                                        const linkRegex = new RegExp(
+                                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
+                                                            "i"
+                                                        );
+                                                        // Replace the content of the target <p> tag
+                                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
+                                                        // Replace the content of the target <img> with the new content
+                                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
+                                                        // Replace the content of the target <a> with the new content
+                                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
+                                                        // Save the updated HTML string back to sessionStorage
+                                                        // sessionStorage.setItem('chatMessages', chatMessages);
+                                                        const pattern = `<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\/span>\\s*<span class="">.*?<\/span>`;
+                                                        // Use a regular expression with 's' flag for multiline matching
+                                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
+                                                        sessionStorage.setItem("chatMessages", chatMessages);
+                                                    } else if (chat.file_path == "Message Unsend" && chat.message == "") {
+                                                        //Final Working For ALL
+                                                        let chatMessages = sessionStorage.getItem("chatMessages");
+                                                        // Define the target data-id and the new content
+                                                        const targetId = chat.message_id; // Change this to the desired data-id
+                                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
+                                                        // Create regex to find the message box containing a <p>
+                                                        const pRegex = new RegExp(`(<div class="message-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`, "i");
+                                                        // Create regex to find the message box containing an <img>
+                                                        const imageRegex = new RegExp(
+                                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
+                                                            "i"
+                                                        );
+                                                        // Create regex to find the message box containing an <a>
+                                                        const linkRegex = new RegExp(
+                                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
+                                                            "i"
+                                                        );
+                                                        // Replace the content of the target <p> tag
+                                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
+                                                        // Replace the content of the target <img> with the new content
+                                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
+                                                        // Replace the content of the target <a> with the new content
+                                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
+                                                        // Save the updated HTML string back to sessionStorage
+                                                        // sessionStorage.setItem('chatMessages', chatMessages);
+                                                        const pattern = `<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\/span>\\s*<span class="">.*?<\/span>`;
+                                                        // Use a regular expression with 's' flag for multiline matching
+                                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
+                                                        sessionStorage.setItem("chatMessages", chatMessages);
+                                                    } else {
+                                                        //for all timesent
+                                                        let chatMessages = sessionStorage.getItem("chatMessages");
+                                                        const targetId = chat.message_id; // Change this to the desired data-id
 
-                        // var reader = new FileReader();
-                        // reader.onloadend = function () {
-                        //     var fileData = reader.result.split(',')[1]; // Remove data URL prefix
-                        //     $.ajax({
-                        //         type: "POST",
-                        //         url: "/spidc_web_api/CSPluginServer/ChatSupport.aspx/SaveFile",
-                        //         contentType: "application/json; charset=utf-8",
-                        //         dataType: "json",
-                        //         data: JSON.stringify({ fileName: file.name, fileData: fileData, fileType: file.type, message: message, uID: uID, cID: cID }),
-                        //         success: function (response) {
-                        //             console.log(response.d);
-                        //             //csconvo("CID1710202402503120598");
-                        //         },
-                        //         error: function (xhr, status, error) {
-                        //             console.log(xhr.responseText);
-                        //             alert('Error: ' + xhr.responseText); // Show detailed error
-                        //         }
-                        //     });
-                        // };
-                        // reader.readAsDataURL(file); // Convert file to Base64
-                    }
+                                                        // Pattern 1: For the span with both 'newtooltip-text csthaction' classes and inner content for "just now"
+                                                        const pattern1 = new RegExp(`<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\\/span>\\s*<span class="">.*?<\\/span>`, "s");
 
-                    //Send Chat
-                    $("#btnmessagesend").click(function () {
+                                                        // Pattern 2: For the simpler span structure with class 'cstimeposition' containing "just now"
+                                                        const pattern2 = new RegExp(`<span class="csthaction" data-id="${targetId}"><\\/span>\\s*<span class="cstimeposition">.*?<\\/span>`, "s");
+
+                                                        // Replace "just now" text in both patterns with "Updated Time"
+                                                        chatMessages = chatMessages.replace(pattern1, (match) => {
+                                                            // This will replace the 'just now' text in the second span with 'Updated Time'
+                                                            return match.replace(/<span class="">.*?<\/span>/, '<span class="">' + timeAgo(chat.sent_at) + "</span>");
+                                                        });
+
+                                                        chatMessages = chatMessages.replace(pattern2, (match) => {
+                                                            // This will replace 'just now' with 'Updated Time' in the second span
+                                                            return match.replace(/<span class="cstimeposition">.*?<\/span>/, '<span class="cstimeposition">' + timeAgo(chat.sent_at) + "</span>");
+                                                        });
+
+                                                        // Log the modified chatMessages to confirm the update
+                                                        //console.log("Client Message"+" "+targetId);
+                                                        //console.log(chatMessages);
+                                                        sessionStorage.setItem("chatMessages", chatMessages);
+                                                    }
+                                                });
+
+                                                loadMessages();
+                                            },
+                                            error: function (xhr, status, errorThrown) {
+                                                console.log("Error fetching chat convo:", xhr.responseText);
+                                            },
+                                        });
+                                    }
+               /* ------------------------------ END CLIENT MESSAGE UNSEND UPDATING-------------------------------------*/
+
+
+
+
+                 /* ------------------------------  SEND CHAT -------------------------------------*/
+                      $("#btnmessagesend").click(function () {
                         sendChat();
                     });
 
@@ -568,338 +513,239 @@ function csnewconvo() {
                             sendChat(); // Call the same function
                         }
                     });
-
-                    function sendChat() {
-                        //alert('Button clicked!');
-
+                     function sendChat() {
                         if (document.getElementById("chatmessage").value.trim() == "" && fileInput.files.length === 0) {
                         } else {
                             const file = fileInput.files[0];
                             var message = document.getElementById("chatmessage").value.trim();
-                            const uID = sessionStorage.getItem("SS1000UID");
-                            const cID = sessionStorage.getItem("SSUCID");
-                            uploadFile(file, message, uID, cID);
-                            document.getElementById("file-input").value = "";
+                            const uID = SS1000UID;
+                            const cID = SS1000UID;
+                           uploadFile(file, message, uID, cID);
+                            //alert(uID+" "+cID);
+                            document.getElementById("fileInput").value = "";
                             document.getElementById("chatmessage").value = "";
+
                         }
                     }
-
-                    loadrealtimeconvo();
-
-                    function loadrealtimeconvo() {
-                        // Call csconvo immediately, then start polling every 2 seconds
-                        // csconvo(); // Initial call to fetch the chat immediately
-
-                        // Set an interval to call csconvo every 2 seconds
-                        setInterval(() => {
-                            //csconvo();
-                            //alert("test");
-                            // Check if the session storage value 'SSUCSWA' is equal to "1"
-                            if (sessionStorage.getItem("SSUCSWA") === "1") {
-                                // Call the csconvo function if the condition is met
-                                csconvo();
-                                csconvoClientMessageUnsendUpdating();
-                            } else {
-                                //Do Nothing
-                            }
-                        }, 2000); // Adjust the interval as needed (2000 milliseconds = 2 seconds)
-                    }
-
-                    fileInput.addEventListener("change", () => {
-                        var reader = new FileReader();
-                        const file = fileInput.files[0];
-                        const uID = sessionStorage.getItem("SS1000UID");
-                        const cID = sessionStorage.getItem("SSUCID");
-                        reader.onloadend = function () {
-                            var fileData = reader.result.split(",")[1]; // Remove data URL prefix
-                            $.ajax({
-                                type: "POST",
-                                url: "/spidc_web_api_test/CSPluginServer/ChatSupport.aspx/SaveFile",
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                data: JSON.stringify({ fileName: file.name, fileData: fileData, fileType: file.type, message: null, uID: uID, cID: cID }),
-                                success: function (response) {
-                                    console.log(response.d);
-                                    //csconvo("CID1710202402503120598");
-                                },
-                                error: function (xhr, status, error) {
-                                    console.log(xhr.responseText);
-                                    alert("Error: " + xhr.responseText); // Show detailed error
-                                },
-                            });
-                        };
-                        reader.readAsDataURL(file); // Convert file to Base64
-                    });
-
-                    $(document).on("click", ".csthaction", function () {
-                        // Save the active item's data-id in localStorage
-                        const mgsid = $(this).data("id");
-                        const csdsuID = sessionStorage.getItem("SS1000UID");
-                        const sdsdscID = sessionStorage.getItem("SSUCID");
-                        // csconvo(csdsuID,sdsdscID);
-                        //scrollToBottom();
-                        //  alert(mgsid);
-                        csunsendmessage(mgsid, sdsdscID);
-                        //csconvoClientMessageUnsendUpdating();
-                    });
-
-                    function csunsendmessage(dfdf, dsfsdf) {
-                        const dsfsdfsdf = {
-                            ActionType: "Unsend Message",
-                            UID: null,
-                            CMSGID: dfdf,
-                        };
+                 
+                      function uploadFile(file, message, uID, cID) {
+                        //if (!file) {
+                        // If there is no file, handle it as needed
                         $.ajax({
                             type: "POST",
-                            async: true,
-                            cache: false,
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
-                            data: JSON.stringify(dsfsdfsdf),
-                            contentType: "application/json",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
-                            },
-                            success: function (response) {
-                                console.log(response);
-
-                                //Final Working For ALL
-                                let chatMessages = sessionStorage.getItem("chatMessages");
-                                // Define the target data-id and the new content
-                                const targetId = dfdf; // Change this to the desired data-id
-                                const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
-                                // Create regex to find the message box containing a <p>
-                                const pRegex = new RegExp(`(<div class="message-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`, "i");
-                                // Create regex to find the message box containing an <img>
-                                const imageRegex = new RegExp(
-                                    `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
-                                    "i"
-                                );
-                                // Create regex to find the message box containing an <a>
-                                const linkRegex = new RegExp(
-                                    `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
-                                    "i"
-                                );
-                                // Replace the content of the target <p> tag
-                                chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
-                                // Replace the content of the target <img> with the new content
-                                chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
-                                // Replace the content of the target <a> with the new content
-                                chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
-                                // Save the updated HTML string back to sessionStorage
-                                sessionStorage.setItem("chatMessages", chatMessages);
-                                // loadMessages();
-                                //remove timne pattern
-                                const pattern = `<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\/span>\\s*<span class="">.*?<\/span>`;
-                                // Use a regular expression with 's' flag for multiline matching
-                                chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
-                                sessionStorage.setItem("chatMessages", chatMessages);
-
-                                // console.log(chatMessages);
-                            },
-                            error: function (xhr, status, errorThrown) {
-                                console.log(xhr.responseText); // Log the response text received from the server
-                            },
-                        });
-                    }
-
-                    function csconvoClientMessageUnsendUpdating() {
-                        $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem("SS1000UID"),
-                            type: "GET",
+                            url: "/spidc_web_api_test/CSPluginServer/ChatSupport.aspx/SaveFile",
+                            contentType: "application/json; charset=utf-8",
                             dataType: "json",
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
-                            },
+                            data: JSON.stringify({ fileName: null, fileData: null, fileType: null, message: message, uID: uID, cID: cID }),
                             success: function (response) {
-                                const chatData = response.data.ChatSpecificInformation;
-                                const filteredChatData = response.data.ChatSpecificInformation.filter(function (chat) {
-                                    return chat.sender_id !== sessionStorage.getItem("SS1000UID");
-                                });
-
-                                const filteredChatDataClentMsg = response.data.ChatSpecificInformation.filter(function (chat) {
-                                    return chat.sender_id == sessionStorage.getItem("SS1000UID");
-                                });
-
-                                filteredChatData.forEach((chat) => {
-                                    //console.log(chat.message_id+" "+chat.message);
-                                    if (chat.message == "Message Unsend" && chat.file_path == "") {
-                                        //console.log("True");
-                                        //Final Working For ALL
-                                        let chatMessages = sessionStorage.getItem("chatMessages");
-                                        // Define the target data-id and the new content
-                                        const targetId = chat.message_id; // Change this to the desired data-id
-                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
-                                        // Create regex to find the message box containing a <p>
-                                        const pRegex = new RegExp(`(<div class="bot-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Create regex to find the message box containing an <img>
-                                        const imageRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Create regex to find the message box containing an <a>
-                                        const linkRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Replace the content of the target <p> tag
-                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
-                                        // Replace the content of the target <img> with the new content
-                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
-                                        // Replace the content of the target <a> with the new content
-                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
-                                        // Save the updated HTML string back to sessionStorage
-                                        // sessionStorage.setItem('chatMessages', chatMessages);
-                                        //remove timne pattern
-                                        const pattern = `<span class="csthaction" data-id="${targetId}"><\/span>\\s*<span class="cstimeposition">.*?<\/span>`;
-                                        // Use a regular expression with 's' flag for multiline matching
-                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
-                                        sessionStorage.setItem("chatMessages", chatMessages);
-                                    } else if (chat.file_path == "Message Unsend" && chat.message == "") {
-                                        //Final Working For ALL
-                                        let chatMessages = sessionStorage.getItem("chatMessages");
-                                        // Define the target data-id and the new content
-                                        const targetId = chat.message_id; // Change this to the desired data-id
-                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
-                                        // Create regex to find the message box containing a <p>
-                                        const pRegex = new RegExp(`(<div class="bot-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Create regex to find the message box containing an <img>
-                                        const imageRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Create regex to find the message box containing an <a>
-                                        const linkRegex = new RegExp(`(<div class="bot-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Replace the content of the target <p> tag
-                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
-                                        // Replace the content of the target <img> with the new content
-                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
-                                        // Replace the content of the target <a> with the new content
-                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
-                                        // Save the updated HTML string back to sessionStorage
-                                        // sessionStorage.setItem('chatMessages', chatMessages);
-                                        const pattern = `<span class="csthaction" data-id="${targetId}"><\/span>\\s*<span class="cstimeposition">.*?<\/span>`;
-                                        // Use a regular expression with 's' flag for multiline matching
-                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
-                                        sessionStorage.setItem("chatMessages", chatMessages);
-                                    } else {
-                                        //for all timesent
-                                        let chatMessages = sessionStorage.getItem("chatMessages");
-                                        const targetId = chat.message_id; // Change this to the desired data-id
-
-                                        // Pattern 1: For the span with both 'newtooltip-text csthaction' classes and inner content for "just now"
-                                        const pattern1 = new RegExp(`<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\\/span>\\s*<span class="">.*?<\\/span>`, "s");
-
-                                        // Pattern 2: For the simpler span structure with class 'cstimeposition' containing "just now"
-                                        const pattern2 = new RegExp(`<span class="csthaction" data-id="${targetId}"><\\/span>\\s*<span class="cstimeposition">.*?<\\/span>`, "s");
-
-                                        // Replace "just now" text in both patterns with "Updated Time"
-                                        chatMessages = chatMessages.replace(pattern1, (match) => {
-                                            // This will replace the 'just now' text in the second span with 'Updated Time'
-                                            return match.replace(/<span class="">.*?<\/span>/, '<span class="">' + timeAgo(chat.sent_at) + "</span>");
-                                        });
-
-                                        chatMessages = chatMessages.replace(pattern2, (match) => {
-                                            // This will replace 'just now' with 'Updated Time' in the second span
-                                            return match.replace(/<span class="cstimeposition">.*?<\/span>/, '<span class="cstimeposition">' + timeAgo(chat.sent_at) + "</span>");
-                                        });
-
-                                        // Log the modified chatMessages to confirm the update
-                                        //  console.log(targetId);
-                                        //console.log(chatMessages);
-                                        sessionStorage.setItem("chatMessages", chatMessages);
-                                    }
-                                });
-
-                                filteredChatDataClentMsg.forEach((chat) => {
-                                    //console.log(chat.message_id+" "+chat.message);
-                                    if (chat.message == "Message Unsend" && chat.file_path == "") {
-                                        //console.log("True");
-                                        //Final Working For ALL
-                                        let chatMessages = sessionStorage.getItem("chatMessages");
-                                        // Define the target data-id and the new content
-                                        const targetId = chat.message_id; // Change this to the desired data-id
-                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
-                                        // Create regex to find the message box containing a <p>
-                                        const pRegex = new RegExp(`(<div class="message-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Create regex to find the message box containing an <img>
-                                        const imageRegex = new RegExp(
-                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
-                                            "i"
-                                        );
-                                        // Create regex to find the message box containing an <a>
-                                        const linkRegex = new RegExp(
-                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
-                                            "i"
-                                        );
-                                        // Replace the content of the target <p> tag
-                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
-                                        // Replace the content of the target <img> with the new content
-                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
-                                        // Replace the content of the target <a> with the new content
-                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
-                                        // Save the updated HTML string back to sessionStorage
-                                        // sessionStorage.setItem('chatMessages', chatMessages);
-                                        const pattern = `<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\/span>\\s*<span class="">.*?<\/span>`;
-                                        // Use a regular expression with 's' flag for multiline matching
-                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
-                                        sessionStorage.setItem("chatMessages", chatMessages);
-                                    } else if (chat.file_path == "Message Unsend" && chat.message == "") {
-                                        //Final Working For ALL
-                                        let chatMessages = sessionStorage.getItem("chatMessages");
-                                        // Define the target data-id and the new content
-                                        const targetId = chat.message_id; // Change this to the desired data-id
-                                        const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
-                                        // Create regex to find the message box containing a <p>
-                                        const pRegex = new RegExp(`(<div class="message-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`, "i");
-                                        // Create regex to find the message box containing an <img>
-                                        const imageRegex = new RegExp(
-                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
-                                            "i"
-                                        );
-                                        // Create regex to find the message box containing an <a>
-                                        const linkRegex = new RegExp(
-                                            `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
-                                            "i"
-                                        );
-                                        // Replace the content of the target <p> tag
-                                        chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
-                                        // Replace the content of the target <img> with the new content
-                                        chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
-                                        // Replace the content of the target <a> with the new content
-                                        chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
-                                        // Save the updated HTML string back to sessionStorage
-                                        // sessionStorage.setItem('chatMessages', chatMessages);
-                                        const pattern = `<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\/span>\\s*<span class="">.*?<\/span>`;
-                                        // Use a regular expression with 's' flag for multiline matching
-                                        chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
-                                        sessionStorage.setItem("chatMessages", chatMessages);
-                                    } else {
-                                        //for all timesent
-                                        let chatMessages = sessionStorage.getItem("chatMessages");
-                                        const targetId = chat.message_id; // Change this to the desired data-id
-
-                                        // Pattern 1: For the span with both 'newtooltip-text csthaction' classes and inner content for "just now"
-                                        const pattern1 = new RegExp(`<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\\/span>\\s*<span class="">.*?<\\/span>`, "s");
-
-                                        // Pattern 2: For the simpler span structure with class 'cstimeposition' containing "just now"
-                                        const pattern2 = new RegExp(`<span class="csthaction" data-id="${targetId}"><\\/span>\\s*<span class="cstimeposition">.*?<\\/span>`, "s");
-
-                                        // Replace "just now" text in both patterns with "Updated Time"
-                                        chatMessages = chatMessages.replace(pattern1, (match) => {
-                                            // This will replace the 'just now' text in the second span with 'Updated Time'
-                                            return match.replace(/<span class="">.*?<\/span>/, '<span class="">' + timeAgo(chat.sent_at) + "</span>");
-                                        });
-
-                                        chatMessages = chatMessages.replace(pattern2, (match) => {
-                                            // This will replace 'just now' with 'Updated Time' in the second span
-                                            return match.replace(/<span class="cstimeposition">.*?<\/span>/, '<span class="cstimeposition">' + timeAgo(chat.sent_at) + "</span>");
-                                        });
-
-                                        // Log the modified chatMessages to confirm the update
-                                        //console.log("Client Message"+" "+targetId);
-                                        //console.log(chatMessages);
-                                        sessionStorage.setItem("chatMessages", chatMessages);
-                                    }
-                                });
-
-                                loadMessages();
+                               // console.log(response.d);
+                                //  csconvo(sessionStorage.getItem('activeChatItem'));
+                                $("#fileInput").val("");
                             },
-                            error: function (xhr, status, errorThrown) {
-                                console.log("Error fetching chat convo:", xhr.responseText);
+                            error: function (xhr, status, error) {
+                                console.log(xhr.responseText);
+                                alert("Error: " + xhr.responseText); // Show detailed error
                             },
                         });
+                        return; // Exit the function early
                     }
+
+
+                        /* Input File Data Checker */
+                    const fileInput = document.getElementById("fileInput");
+                    fileInput.addEventListener("change", () => {
+                        const file = fileInput.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+
+                            reader.onload = (e) => {
+                                // At this point, the file is read into memory.
+                                // You can now check the file type directly from the File object
+                                if (file.type.startsWith("video/")) {
+                                    alert("Video files are not allowed");
+                                } else {
+                                    //alert('File is OK');
+                                }
+                            };
+                            // Start reading the file as a data URL (base64 encoded string)
+                            reader.readAsDataURL(file);
+                        } else {
+                            alert("No file selected");
+                        }
+                    });
+                    /*end Input File Data Checker */
+
+
+
+
+
+
+                /* ------------------------------ END SEND CHAT -------------------------------------*/
+
+
+
+
+
+                        /* ------------------------------ UNSEND MESSAGE -------------------------------------*/
+
+                                  $(document).on("click", ".csthaction", function () {
+                                                // Save the active item's data-id in localStorage
+                                                const mgsid = $(this).data("id");
+                                                const csdsuID = SS1000UID;
+                                                const sdsdscID = SS1000UID;
+                                                // csconvo(csdsuID,sdsdscID);
+                                                //scrollToBottom();
+                                                 //alert(mgsid);
+                                                csunsendmessage(mgsid, sdsdscID);
+                                                //csconvoClientMessageUnsendUpdating();
+                                     });
+
+
+                                    function csunsendmessage(dfdf, dsfsdf) {
+                                        const dsfsdfsdf = {
+                                            ActionType: "Unsend Message",
+                                            UID: null,
+                                            CMSGID: dfdf,
+                                        };
+                                        $.ajax({
+                                            type: "POST",
+                                            async: true,
+                                            cache: false,
+                                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
+                                            data: JSON.stringify(dsfsdfsdf),
+                                            contentType: "application/json",
+                                            beforeSend: function (xhr) {
+                                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                            },
+                                            success: function (response) {
+                                                console.log(response);
+
+                                                //Final Working For ALL
+                                                let chatMessages = sessionStorage.getItem("chatMessages");
+                                                // Define the target data-id and the new content
+                                                const targetId = dfdf; // Change this to the desired data-id
+                                                const newContent = '<p style="margin-bottom: 0px;">Message Unsend</p>'; // New content to replace with
+                                                // Create regex to find the message box containing a <p>
+                                                const pRegex = new RegExp(`(<div class="message-box">\\s*<p style="margin-bottom: 0px;">)(.*?)(</p>\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`, "i");
+                                                // Create regex to find the message box containing an <img>
+                                                const imageRegex = new RegExp(
+                                                    `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<img[^>]*>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
+                                                    "i"
+                                                );
+                                                // Create regex to find the message box containing an <a>
+                                                const linkRegex = new RegExp(
+                                                    `(<div class="message-box">)(\\s*(<div style="margin-top: 0px;">\\s*<a[^>]*>.*?</a>\\s*</div>))(\\s*</div>\\s*<span class="newtooltip-text csthaction" data-id="${targetId}".*?>)`,
+                                                    "i"
+                                                );
+                                                // Replace the content of the target <p> tag
+                                                chatMessages = chatMessages.replace(pRegex, `$1${newContent}$3`);
+                                                // Replace the content of the target <img> with the new content
+                                                chatMessages = chatMessages.replace(imageRegex, `$1${newContent}$4`);
+                                                // Replace the content of the target <a> with the new content
+                                                chatMessages = chatMessages.replace(linkRegex, `$1${newContent}$4`);
+                                                // Save the updated HTML string back to sessionStorage
+                                                sessionStorage.setItem("chatMessages", chatMessages);
+                                                // loadMessages();
+                                                //remove timne pattern
+                                                const pattern = `<span class="newtooltip-text csthaction" data-id="${targetId}">.*?<\/span>\\s*<span class="">.*?<\/span>`;
+                                                // Use a regular expression with 's' flag for multiline matching
+                                                chatMessages = chatMessages.replace(new RegExp(pattern, "s"), "");
+                                                sessionStorage.setItem("chatMessages", chatMessages);
+
+                                                // console.log(chatMessages);
+                                            },
+                                            error: function (xhr, status, errorThrown) {
+                                                console.log(xhr.responseText); // Log the response text received from the server
+                                            },
+                                        });
+                                    }
+                        /* ------------------------------ END UNSEND MESSAGE-------------------------------------*/
+
+
+                    
+
+
+
+
+
+
+
+                    /* ------------------------------ chat timestamp--------------------------------------*/
+                    function timeAgo(dateString) {
+                        const now = new Date();
+                        const then = new Date(dateString);
+                        const diff = now - then;
+
+                        if (diff < 1000) {
+                            return "just now"; // Show "just now" for times under 1 second
+                        }
+
+                        const seconds = Math.floor(diff / 1000);
+                        const minutes = Math.floor(seconds / 60);
+                        const hours = Math.floor(minutes / 60);
+                        const days = Math.floor(hours / 24);
+
+                        if (days > 0) {
+                            return `${days}d ago`;
+                        }
+                        if (hours > 0) {
+                            return `${hours}h ago`;
+                        }
+                        if (minutes > 0) {
+                            return `${minutes}m ago`;
+                        }
+                        return `${seconds}s ago`;
+                    }
+                    /*------------------------- end chat timestamp---------------------------*/
+
+ 
+                /* ------------------------------ Save messages to local storage --------------------------------------*/
+                    function saveMessages() {
+                        const messages = $(".chat-messages").html();
+                        sessionStorage.setItem("chatMessages", messages);
+                    }
+                /* ------------------------------ END Save messages to local storage --------------------------------------*/
+
+              /* ------------------------------ Load messages from local storage --------------------------------------*/
+                     function loadMessages() {
+                        const savedMessages = sessionStorage.getItem("chatMessages");
+                        if (savedMessages) {
+                            $(".chat-messages").html(savedMessages);
+                            scrollToBottom(); 
+                        }
+                    }
+                    /* ------------------------------ End Load messages from local storage --------------------------------------*/
+
+               /* ------------------------------ Function to remove specific bot messages--------------------------------------*/
+                    function removeConnectingMessages() {
+                        // Remove the "Connecting to Agent......." message
+                        $(".message-box-holder")
+                            .filter(function () {
+                                return $(this).find(".bot-box").text().trim() === "Connecting to Agent.......";
+                            })
+                            .remove();
+
+                        // Remove any empty bot boxes
+                        $(".message-box-holder").filter(function () {
+                                return $(this).find(".bot-box").is(":empty"); // Check if the bot box is empty
+                            }).remove();
+                    }
+               /* ------------------------------ END Function to remove specific bot messages--------------------------------------*/
+                  
+                   
+
+                   
+
+                  
+
+                   
+                    
+                  
+
+                   
+                    
+               
+                  
                 });
                 //end of document ready
             };
@@ -914,7 +760,53 @@ function csnewconvo() {
     } else {
         alert("jQuery script already exists, not appending again.");
     }
+
+
+
+    
 }
 
+
 function viewFullScreen(src) {
+    const fullScreenContainer = document.createElement("div");
+    fullScreenContainer.style.position = "fixed";
+    fullScreenContainer.style.top = "0";
+    fullScreenContainer.style.left = "0";
+    fullScreenContainer.style.width = "100%";
+    fullScreenContainer.style.height = "100%";
+    fullScreenContainer.style.backgroundColor = "rgba(0,0,0,0.8";
+    fullScreenContainer.style.display = "flex";
+    fullScreenContainer.style.alignItems = "center";
+    fullScreenContainer.style.justifyContent = "center";
+    fullScreenContainer.style.zIndex = "1000";
+    fullScreenContainer.style.cursor = "pointer";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.style.maxWidth = "90%";
+    img.style.maxHeight = "90%";
+    fullScreenContainer.appendChild(img);
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "X";
+    closeButton.style.position = "absolute";
+    closeButton.style.top = "20px";
+    closeButton.style.right = "20px";
+    closeButton.style.backgroundColor = "transparent";
+    closeButton.style.border = "none";
+    closeButton.style.padding = "10px";
+    closeButton.style.cursor = "pointer";
+    closeButton.onclick = () => document.body.removeChild(fullScreenContainer);
+    fullScreenContainer.appendChild(closeButton);
+
+    fullScreenContainer.onclick = () => document.body.removeChild(fullScreenContainer);
+
+    document.body.appendChild(fullScreenContainer);
+
+    document.addEventListener("keydown", function handleEscKey(e) {
+        if (e.key === "Escape") {
+            document.body.removeChild(fullScreenContainer);
+            document.removeEventListener("keydown", handleEscKey);
+        }
+    });
 }
