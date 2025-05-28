@@ -639,27 +639,82 @@ function csplugindist() {
 
 
                         /* Input File Data Checker */
-                    const fileInput = document.getElementById("fileInput");
-                    fileInput.addEventListener("change", () => {
-                        const file = fileInput.files[0];
-                        if (file) {
-                            const reader = new FileReader();
+                     const fileInput = document.getElementById("file-input");
 
-                            reader.onload = (e) => {
-                                // At this point, the file is read into memory.
-                                // You can now check the file type directly from the File object
-                                if (file.type.startsWith("video/")) {
-                                    alert("Video files are not allowed");
+                            fileInput.addEventListener("change", () => {
+                                const file = fileInput.files[0];
+
+                                if (file) {
+                                    const reader = new FileReader();
+
+                                    reader.onload = (e) => {
+                                        // At this point, the file is read into memory.
+                                        // You can now check the file type directly from the File object
+                                        if (file.type.startsWith("video/")) {
+                                            alert("Video files are not allowed");
+                                        } else {
+                                            //alert('File is OK');
+                                        }
+                                    };
+
+                                    // Start reading the file as a data URL (base64 encoded string)
+                                    reader.readAsDataURL(file);
                                 } else {
-                                    //alert('File is OK');
+                                    alert("No file selected");
                                 }
-                            };
-                            // Start reading the file as a data URL (base64 encoded string)
-                            reader.readAsDataURL(file);
-                        } else {
-                            alert("No file selected");
-                        }
-                    });
+                            });
+                            /*end Input File Data Checker */
+
+                            /* Upload File Ajax */
+
+                            function uploadFile(file, message, uID, cID) {
+                                //if (!file) {
+                                // If there is no file, handle it as needed
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/spidc_web_api/CSPluginServer/ChatSupport.aspx/SaveFile",
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    data: JSON.stringify({ fileName: null, fileData: null, fileType: null, message: message, uID: uID, cID: cID }),
+                                    success: function (response) {
+                                        console.log(response.d);
+                                        //  csconvo(sessionStorage.getItem('activeChatItem'));
+                                        $("#file-input").val("");
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.log(xhr.responseText);
+                                        alert("Error: " + xhr.responseText); // Show detailed error
+                                    },
+                                });
+                                return; // Exit the function early
+                            
+                            }
+
+                            fileInput.addEventListener("change", () => {
+                                var reader = new FileReader();
+                                const file = fileInput.files[0];
+                                const uID = sessionStorage.getItem("SS1000UID");
+                                const cID = sessionStorage.getItem("SS1000UID");
+                                reader.onloadend = function () {
+                                    var fileData = reader.result.split(",")[1]; // Remove data URL prefix
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/spidc_web_api_test/CSPluginServer/ChatSupport.aspx/SaveFile",
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        data: JSON.stringify({ fileName: file.name, fileData: fileData, fileType: file.type, message: null, uID: uID, cID: cID }),
+                                        success: function (response) {
+                                            console.log(response.d);
+                                            //csconvo("CID1710202402503120598");
+                                        },
+                                        error: function (xhr, status, error) {
+                                            console.log(xhr.responseText);
+                                            alert("Error: " + xhr.responseText); // Show detailed error
+                                        },
+                                    });
+                                };
+                                reader.readAsDataURL(file); // Convert file to Base64
+                            });
                     /*end Input File Data Checker */
 
 
