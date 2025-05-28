@@ -276,12 +276,12 @@ function csplugindist() {
                   
                   
                     /* ------------------------------ END CONVO--------------------------------------*/
-                    var SS1000UID = "20241205000001"
+                    //var SS1000UID = "20241205000001"
                     let processedMessageIds = JSON.parse(sessionStorage.getItem("processedMessageIds")) || [];
                     function csconvo() {
                         
                         $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + SS1000UID,
+                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem('SS1000UID'),
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
@@ -298,12 +298,12 @@ function csplugindist() {
                                     chatData.forEach((chat) => {
                                         // Check if this message ID has already been processed
                                         if (!processedMessageIds.includes(chat.message_id)) {
-                                            const messageClass = chat.sender_id === SS1000UID ? "message-box" : "bot-box";
+                                            const messageClass = chat.sender_id === sessionStorage.getItem('SS1000UID') ? "message-box" : "bot-box";
                                             let chatMessage = "";
 
                                             // Check for any message text or file attachment
                                             if (chat.message !== "" || chat.file_path !== "") {
-                                                const csactionbtn = chat.sender_id === SS1000UID ? "" : "";
+                                                const csactionbtn = chat.sender_id === sessionStorage.getItem('SS1000UID') ? "" : "";
                                                 chatMessage = csactionbtn + '<div class="message-box-holder newtooltip">\n' + '<div class="' + messageClass + '">\n';
 
                                                 // Append the message text if it exists
@@ -388,7 +388,7 @@ function csplugindist() {
                     /* ------------------------------ END CLIENT MESSAGE UNSEND UPDATING-------------------------------------*/
                     function csconvoClientMessageUnsendUpdating() {
                                         $.ajax({
-                                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + SS1000UID,
+                                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem('SS1000UID'),
                                             type: "GET",
                                             dataType: "json",
                                             beforeSend: function (xhr) {
@@ -397,11 +397,11 @@ function csplugindist() {
                                             success: function (response) {
                                                 const chatData = response.data.ChatSpecificInformation;
                                                 const filteredChatData = response.data.ChatSpecificInformation.filter(function (chat) {
-                                                    return chat.sender_id !== SS1000UID;
+                                                    return chat.sender_id !== sessionStorage.getItem('SS1000UID');
                                                 });
 
                                                 const filteredChatDataClentMsg = response.data.ChatSpecificInformation.filter(function (chat) {
-                                                    return chat.sender_id == SS1000UID;
+                                                    return chat.sender_id == sessionStorage.getItem('SS1000UID');
                                                 });
 
                                                 filteredChatData.forEach((chat) => {
@@ -605,8 +605,8 @@ function csplugindist() {
                         } else {
                             const file = fileInput.files[0];
                             var message = document.getElementById("chatmessage").value.trim();
-                            const uID = SS1000UID;
-                            const cID = SS1000UID;
+                            const uID = sessionStorage.getItem('SS1000UID');
+                            const cID = sessionStorage.getItem('SS1000UID');
                            uploadFile(file, message, uID, cID);
                             //alert(uID+" "+cID);
                             document.getElementById("fileInput").value = "";
@@ -678,8 +678,8 @@ function csplugindist() {
                                   $(document).on("click", ".csthaction", function () {
                                                 // Save the active item's data-id in localStorage
                                                 const mgsid = $(this).data("id");
-                                                const csdsuID = SS1000UID;
-                                                const sdsdscID = SS1000UID;
+                                                const csdsuID = sessionStorage.getItem('SS1000UID');
+                                                const sdsdscID = sessionStorage.getItem('SS1000UID');
                                                 // csconvo(csdsuID,sdsdscID);
                                                 //scrollToBottom();
                                                  //alert(mgsid);
