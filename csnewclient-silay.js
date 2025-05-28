@@ -259,15 +259,14 @@ function csplugindist() {
                             //csconvo();
                             //alert("test");
                             // Check if the session storage value 'SSUCSWA' is equal to "1"
-                            // if (sessionStorage.getItem("SSUCSWA") === "1") {
+                             if (sessionStorage.getItem("SSUCSWA") === "1") {
                             //     // Call the csconvo function if the condition is met
-                            //     csconvo();
-                            //     csconvoClientMessageUnsendUpdating();
-                            // } else {
-                            //     //Do Nothing
-                            // }
                             csconvo();
                             csconvoClientMessageUnsendUpdating();
+                             } else {
+                            //     //Do Nothing
+                             }
+                           
                             //alert("test");
                         }, 2000); // Adjust the interval as needed (2000 milliseconds = 2 seconds)
                     }
