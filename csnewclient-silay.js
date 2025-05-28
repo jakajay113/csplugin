@@ -54,7 +54,7 @@ function csplugindist() {
                                 <button type="button" value="Send" class="message-send" id="btnmessagesend">Send</button>
                             </div>
                             <div class="attachment-panel">
-                                <input type="file" id="fileInput" style="display: none;" />
+                                <input type="file" id="file-input" style="display: none;" />
                             </div>
                         </div>
                     </div>
@@ -627,7 +627,7 @@ function csplugindist() {
                             success: function (response) {
                                // console.log(response.d);
                                 //  csconvo(sessionStorage.getItem('activeChatItem'));
-                                $("#fileInput").val("");
+                                $("#file-input").val("");
                             },
                             error: function (xhr, status, error) {
                                 console.log(xhr.responseText);
