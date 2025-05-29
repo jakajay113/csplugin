@@ -1,3 +1,4 @@
+
 /*@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');*/
 
 * {
@@ -47,7 +48,7 @@ ul {
     padding: 10px 0;
     border-radius: 10px 10px 0 0;
     /*background: rgba(0, 0, 0, .05);*/
-    background-color: #da1111;
+    background-color: #3867d6;
 }
 
 .chatbox-icons {
@@ -57,7 +58,7 @@ ul {
 }
 
 .chatbox-icons .fa {
-    background: linear-gradient(180deg, #da1111, #da1111);
+    background: linear-gradient(180deg, #3867d6, #3867d6);
     padding: 3px 5px;
     margin: 0 0 0 3px;
     color: white;
@@ -238,7 +239,7 @@ ul {
     background: -webkit-linear-gradient(180deg, #4975c3, #4975c3);
     background: -o-linear-gradient(180deg, #4975c3, #4975c3);
     background: -ms-linear-gradient(180deg, #4975c3, #4975c3);
-    background: linear-gradient(180deg, #da1111, #da1111);
+    background: linear-gradient(180deg, #3867d6, #3867d6);
     color: white;
     font-size: 20px;
     padding: 0 15px;
