@@ -324,7 +324,7 @@ function csplugindist() {
                                                         if (messageClass === "message-box") {
                                                             fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
                                                                 .split("/")
-                                                                .pop()}" style="color: white;">${chat.file_path.split("/").pop()}</a>`;
+                                                                .pop()}" style="color: black;">${chat.file_path.split("/").pop()}</a>`;
                                                         } else {
                                                             fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
                                                                 .split("/")
