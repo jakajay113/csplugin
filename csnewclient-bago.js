@@ -176,7 +176,7 @@ function csplugindist() {
                             data: JSON.stringify(logindata),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
-                                 xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                 xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
                             },
                             success: function (response) {
                                     const userData = response; // No need for JSON.parse(JSON.stringify) if response is already an object
@@ -222,7 +222,7 @@ function csplugindist() {
                                  data: JSON.stringify(roomdata),
                                  contentType: "application/json",
                                  beforeSend: function (xhr) {
-                                       xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                       xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
                                  },
                                  success: function (response) {
                                      console.log(response);
@@ -285,7 +285,7 @@ function csplugindist() {
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
-                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
                             },
                             success: function (response) {
                                 // Remove any temporary loading message or last placeholder
@@ -392,7 +392,7 @@ function csplugindist() {
                                             type: "GET",
                                             dataType: "json",
                                             beforeSend: function (xhr) {
-                                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
                                             },
                                             success: function (response) {
                                                 const chatData = response.data.ChatSpecificInformation;
@@ -736,7 +736,7 @@ function csplugindist() {
                                             data: JSON.stringify(dsfsdfsdf),
                                             contentType: "application/json",
                                             beforeSend: function (xhr) {
-                                                xhr.setRequestHeader("Authorization", "lfFaeXGggldqkXBhuuwxReKpozqCBtjynxyf608Xb7vGS09FsMNTXdsjViiYA8j2");
+                                                xhr.setRequestHeader("Authorization", "OyILGtcM4ZDmCyQ4OzGFT8pxcOUtKPVsHAGnDoelJR0BDOOeclOcd257oDmEhVDn");
                                             },
                                             success: function (response) {
                                                 console.log(response);
