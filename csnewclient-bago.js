@@ -9,7 +9,7 @@
 
 function csplugindist() {
 //Check if the CSS file is already in the document
-    if (!document.querySelector('link[href="https://jakajay113.github.io/csplugin/csnewclient-silay.css"]')) {
+    if (!document.querySelector('link[href="https://jakajay113.github.io/csplugin/csnewclient-bago.css"]')) {
         // Create the <link> element for CSS
         const cssLink = document.createElement("link");
         cssLink.rel = "stylesheet";
@@ -30,7 +30,7 @@ function csplugindist() {
                             <div class="chatbox-top">
                                 <div class="chatbox-avatar">
                                     <a href="#">
-                                        <img src="https://bizportal.silaycity.gov.ph/favicon.ico"/>
+                                        <img src="https://eservices.bagocity.gov.ph/favicon.ico"/>
                                     </a>
                                 </div>
                                 <div class="chat-partner-name">
