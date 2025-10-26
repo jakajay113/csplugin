@@ -30,7 +30,7 @@ function csplugindist() {
                             <div class="chatbox-top">
                                 <div class="chatbox-avatar">
                                     <a href="#">
-                                        <img src="https://eservices.bagocity.gov.ph/favicon.ico"/>
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3XYBqSnLSEwbzKQz4oOYYXvQAp6qzDKMoVg&s"/>
                                     </a>
                                 </div>
                                 <div class="chat-partner-name">
@@ -172,7 +172,7 @@ function csplugindist() {
                             type: "POST",
                             async: true,
                             cache: false,
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostAuthenticateOAIMS",
+                            url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostAuthenticateOAIMS",
                             data: JSON.stringify(logindata),
                             contentType: "application/json",
                             beforeSend: function (xhr) {
@@ -218,7 +218,7 @@ function csplugindist() {
                                  type: "POST",
                                  async: true,
                                  cache: false,
-                                 url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
+                                 url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
                                  data: JSON.stringify(roomdata),
                                  contentType: "application/json",
                                  beforeSend: function (xhr) {
@@ -281,7 +281,7 @@ function csplugindist() {
                     function csconvo() {
                         
                         $.ajax({
-                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem('SS1000UID'),
+                            url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem('SS1000UID'),
                             type: "GET",
                             dataType: "json",
                             beforeSend: function (xhr) {
@@ -315,18 +315,18 @@ function csplugindist() {
                                                 if (chat.file_path !== "") {
                                                     let fileElement = "";
                                                     if (chat.file_type === "image/jpeg" || chat.file_type === "image/png") {
-                                                        fileElement = `<img src="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" alt="Attachment" onclick="viewFullScreen('${
-                                                            "https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path
+                                                        fileElement = `<img src="${"https://eservices.bagocity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" alt="Attachment" onclick="viewFullScreen('${
+                                                            "https://eservices.bagocity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path
                                                         }')" style="cursor: pointer;width: 100%;height: 100px;">`;
                                                     } else if (chat.file_type === "video/mp4") {
                                                         fileElement = `<video controls><source src="${chat.file_path}" type="video/mp4"></video>`;
                                                     } else if (chat.file_type === "application/pdf") {
                                                         if (messageClass === "message-box") {
-                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
+                                                            fileElement = `<a href="${"https://eservices.bagocity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
                                                                 .split("/")
                                                                 .pop()}" style="color: black;">${chat.file_path.split("/").pop()}</a>`;
                                                         } else {
-                                                            fileElement = `<a href="${"https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
+                                                            fileElement = `<a href="${"https://eservices.bagocity.gov.ph/spidc_web_api_test/CSPluginServer" + chat.file_path}" download="${chat.file_path
                                                                 .split("/")
                                                                 .pop()}" style="color: #716060;">${chat.file_path.split("/").pop()}</a>`;
                                                         }
@@ -388,7 +388,7 @@ function csplugindist() {
                     /* ------------------------------ END CLIENT MESSAGE UNSEND UPDATING-------------------------------------*/
                     function csconvoClientMessageUnsendUpdating() {
                                         $.ajax({
-                                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem('SS1000UID'),
+                                            url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppGetOAIMS/" + sessionStorage.getItem('SS1000UID'),
                                             type: "GET",
                                             dataType: "json",
                                             beforeSend: function (xhr) {
@@ -732,7 +732,7 @@ function csplugindist() {
                                             type: "POST",
                                             async: true,
                                             cache: false,
-                                            url: "https://bizportal.silaycity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
+                                            url: "https://eservices.bagocity.gov.ph/spidc_web_api_test/api/v1/spidcproxy/chatSupportAppPostOAIMS",
                                             data: JSON.stringify(dsfsdfsdf),
                                             contentType: "application/json",
                                             beforeSend: function (xhr) {
