@@ -207,7 +207,7 @@ function cseen(asdasdasdciid,gfgfgcname){
                                     // Determine the file display based on file type
                                             if (chat.file_type === "image/jpeg" || chat.file_type === "image/png") {
                                                 filevalueData = chat.file_path === "Message Unsend" ? chat.file_path 
-                                                : `<img src="https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer${chat.file_path}" alt="Attachment" onclick="viewFullScreen('https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}')" style="cursor: pointer;">`;
+                                                : `<img src="https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer${chat.file_path}" alt="Attachment" onclick="viewFullScreen('https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer${chat.file_path}')" style="cursor: pointer;">`;
                                               
                                             
                                             } else if (chat.file_type === "video/mp4") {
@@ -218,11 +218,11 @@ function cseen(asdasdasdciid,gfgfgcname){
                                                 if(messageClass =="sender"){
                                                     filevalueData = chat.file_path === "Message Unsend" ? chat.file_path 
                                                     : `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #000;">${chat.file_path.split('/').pop()}</a>`;
-                                                   // filevalueData = `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #000;">${chat.file_path.split('/').pop()}</a>`;
+                                                   // filevalueData = `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #000;">${chat.file_path.split('/').pop()}</a>`;
                                                 }else{
                                                     filevalueData = chat.file_path === "Message Unsend" ? chat.file_path 
                                                     : `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #fff;">${chat.file_path.split('/').pop()}</a>`;
-                                                    //filevalueData = `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #fff;">${chat.file_path.split('/').pop()}</a>`;
+                                                    //filevalueData = `<a href="https://bizportal.silaycity.gov.ph/spidc_web_api_test/CSPluginServer${chat.file_path}" download="${chat.file_path.split('/').pop()}" style="color: #fff;">${chat.file_path.split('/').pop()}</a>`;
                                                 }
                                               
                                             } else {
